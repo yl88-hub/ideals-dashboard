@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台股每日戰情總看板 ｜ TW Stock Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            darkBg: '#0b0f19',
+            darkCard: '#131b2e',
+            darkCardHover: '#1a243d',
+            darkBorder: '#1f2b48',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #273554;
+      border-radius: 3px;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-[#0b0f19]/90 backdrop-blur-md border-b border-darkBorder px-4 lg:px-8 py-3.5">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <span class="text-xl">📡</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-bold text-white tracking-tight">台股每日戰情總看板</h1>
+            <span id="headerMarketBadge" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              🟢 綠燈 多頭許可
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">五位一體多維共振量化分析與買賣作戰計劃</p>
+        </div>
+      </div>
+
+      <!-- Action Controls & Date Info -->
+      <div class="flex items-center space-x-3 self-end sm:self-center">
+        <div class="text-right hidden md:block">
+          <div class="text-xs text-slate-400">資料日期</div>
+          <div id="displayDate" class="text-sm font-mono font-semibold text-indigo-400">載入中...</div>
+        </div>
+        <button id="copyPlanBtn" onclick="copyPlanToClipboard()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-darkCard border border-darkBorder hover:bg-darkCardHover text-xs font-medium text-slate-200 transition">
+          <span>📋 複製作戰計劃</span>
+        </button>
+        <a href="https://github.com/yl88-hub/ideals" target="_blank" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-darkCard border border-darkBorder hover:bg-darkCardHover text-xs font-medium text-slate-300 transition">
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+
+    <!-- Market Overview Status Card -->
+    <div id="marketOverviewCard" class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="p-3.5 rounded-xl bg-darkBg/60 border border-darkBorder/60">
+          <div class="text-xs text-slate-400 font-medium">大盤環境燈號</div>
+          <div id="statLightText" class="text-base font-bold text-emerald-400 mt-1">🟢 綠燈許可</div>
+          <div id="statAdvice" class="text-[11px] text-slate-400 mt-0.5 truncate">資金健康，正常操作多單</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-darkBg/60 border border-darkBorder/60">
+          <div class="text-xs text-slate-400 font-medium">加權指數 (TAIEX)</div>
+          <div id="statTaiex" class="text-base font-mono font-bold text-white mt-1">--</div>
+          <div id="statTaiex5d" class="text-[11px] font-mono text-emerald-400 mt-0.5">5日 --%</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-darkBg/60 border border-darkBorder/60">
+          <div class="text-xs text-slate-400 font-medium">vs MA20 / MA60</div>
+          <div id="statMaPosition" class="text-base font-mono font-bold text-white mt-1">-- / --</div>
+          <div id="statMaValues" class="text-[11px] font-mono text-slate-400 mt-0.5">均線之上</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-darkBg/60 border border-darkBorder/60">
+          <div class="text-xs text-slate-400 font-medium">市場上漲比例</div>
+          <div id="statAdvRatio" class="text-base font-mono font-bold text-white mt-1">--%</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">全市場上市/上櫃</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-darkBg/60 border border-darkBorder/60">
+          <div class="text-xs text-slate-400 font-medium">站上 20MA 廣度</div>
+          <div id="statAboveMa20" class="text-base font-mono font-bold text-white mt-1">--%</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">多頭結構指標</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-darkBg/60 border border-darkBorder/60">
+          <div class="text-xs text-slate-400 font-medium">前三大族群集中度</div>
+          <div id="statConc3" class="text-base font-mono font-bold text-white mt-1">--%</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">資金集中水位</div>
+        </div>
+      </div>
+
+      <!-- AI Morning Briefing Banner (if available) -->
+      <div id="aiBriefingBox" class="mt-4 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/20">
+        <div class="flex items-start space-x-3">
+          <div class="text-2xl mt-0.5">🤖</div>
+          <div class="flex-1 space-y-1.5">
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-bold text-indigo-300 uppercase tracking-wider">操盤室 AI 晨會總評</span>
+              <span id="aiToneBadge" class="px-2 py-0.5 text-[11px] font-semibold rounded bg-indigo-500/20 text-indigo-300">積極做多</span>
+            </div>
+            <p id="aiSummaryText" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+              AI 矽光子與重電受外資擴大買超，資金持續向電子半導體與主流設備集中。
+            </p>
+            <div id="aiHighlightsList" class="flex flex-wrap gap-2 pt-1 text-xs text-slate-300">
+              <!-- AI highlights tags inserted dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs & Search Toolbar -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <!-- Tabs -->
+      <div class="flex items-center space-x-1.5 p-1 bg-darkCard border border-darkBorder rounded-xl overflow-x-auto custom-scrollbar">
+        <button onclick="switchTab('plan')" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition whitespace-nowrap" data-tab="plan">
+          🎯 買賣作戰計劃
+        </button>
+        <button onclick="switchTab('rotation')" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition whitespace-nowrap" data-tab="rotation">
+          🌊 資金輪動雷達
+        </button>
+        <button onclick="switchTab('momentum')" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition whitespace-nowrap" data-tab="momentum">
+          🚀 成交動能 TOP50
+        </button>
+        <button onclick="switchTab('news')" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition whitespace-nowrap" data-tab="news">
+          📰 消息面與籌碼
+        </button>
+        <button onclick="switchTab('swing')" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition whitespace-nowrap" data-tab="swing">
+          📈 右側波段選股
+        </button>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="relative min-w-[220px]">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 text-xs">🔍</span>
+        <input id="searchInput" type="text" placeholder="快速搜尋代號 / 名稱 / 族群..." oninput="handleSearch(this.value)" class="w-full pl-8 pr-3 py-2 text-xs bg-darkCard border border-darkBorder rounded-xl focus:outline-none focus:border-indigo-500 text-slate-200 placeholder-slate-500 transition">
+      </div>
+    </div>
+
+    <!-- TAB 1: 綜合買賣作戰計劃書 (Master Plan) -->
+    <section id="tab-plan" class="tab-content space-y-6">
+      <!-- 買進焦點清單 -->
+      <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🚀</span>
+            <h2 class="text-base font-bold text-white">明日買進候選名單（多維共振篩選）</h2>
+          </div>
+          <span class="text-xs text-slate-400">依單筆 2% 風險預算試算部位</span>
+        </div>
+
+        <div id="planCandidatesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically populated candidate cards -->
+        </div>
+      </div>
+
+      <!-- 持股退場風控檢視 -->
+      <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">⚠️</span>
+            <h2 class="text-base font-bold text-white">既有持股風控退場檢視</h2>
+          </div>
+          <span class="text-xs text-slate-400">持股監控與停損紀律</span>
+        </div>
+
+        <div id="planExitWarningsContainer" class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-darkBg text-slate-400 uppercase font-semibold">
+              <tr>
+                <th class="px-4 py-3 rounded-l-lg">代號 / 名稱</th>
+                <th class="px-4 py-3">所屬族群</th>
+                <th class="px-4 py-3 font-mono">目前收盤</th>
+                <th class="px-4 py-3 font-mono">建議停損</th>
+                <th class="px-4 py-3">警示訊號</th>
+                <th class="px-4 py-3">狀態</th>
+                <th class="px-4 py-3 rounded-r-lg">操作建議</th>
+              </tr>
+            </thead>
+            <tbody id="exitTableBody" class="divide-y divide-darkBorder text-slate-200">
+              <!-- Dynamically populated exit rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 操盤紀律手冊卡片 -->
+      <div class="rounded-2xl bg-gradient-to-r from-darkCard to-indigo-950/20 border border-darkBorder p-5">
+        <h3 class="text-sm font-bold text-indigo-400 flex items-center space-x-1.5 mb-2">
+          <span>📌</span>
+          <span>操盤作戰紀律守則</span>
+        </h3>
+        <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+          <li>• <strong>停損先於獲利</strong>：買進前先掛好券商觸價停損單，單筆虧損絕不超過總資金 2%。</li>
+          <li>• <strong>順勢不逆流</strong>：紅燈不開新倉、黃燈減半試單、綠燈果斷進場主流板塊。</li>
+          <li>• <strong>嚴禁向下攤平</strong>：破 10MA 或跌破停損線立即執行紀律退場。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TAB 2: 資金輪動雷達 (Rotation) -->
+    <section id="tab-rotation" class="tab-content hidden space-y-6">
+      <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🌊</span>
+            <h2 class="text-base font-bold text-white">族群熱度排行（資金輪動）</h2>
+          </div>
+          <span class="text-xs text-slate-400">🌱 初升 ｜ 🚀 主升 ｜ 🔥 過熱 ｜ 🌊 退潮</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-darkBg text-slate-400 uppercase font-semibold">
+              <tr>
+                <th class="px-4 py-3 rounded-l-lg">族群</th>
+                <th class="px-4 py-3">階段</th>
+                <th class="px-4 py-3 font-mono">成交值佔比</th>
+                <th class="px-4 py-3 font-mono">5日佔比變化</th>
+                <th class="px-4 py-3 font-mono">相對大盤 5日</th>
+                <th class="px-4 py-3">熱度分數</th>
+                <th class="px-4 py-3 rounded-r-lg font-mono">連續熱度</th>
+              </tr>
+            </thead>
+            <tbody id="rotationTableBody" class="divide-y divide-darkBorder text-slate-200">
+              <!-- Dynamically populated rotation rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 成交動能 TOP50 (Momentum) -->
+    <section id="tab-momentum" class="tab-content hidden space-y-6">
+      <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🚀</span>
+            <h2 class="text-base font-bold text-white">成交值前 50 名 × 動能加速排行榜</h2>
+          </div>
+          <span class="text-xs text-slate-400">量比 &gt; 1.2x ＋ 5日動能正向</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-darkBg text-slate-400 uppercase font-semibold">
+              <tr>
+                <th class="px-4 py-3 rounded-l-lg font-mono">排名</th>
+                <th class="px-4 py-3">代號 / 名稱</th>
+                <th class="px-4 py-3 font-mono">收盤價</th>
+                <th class="px-4 py-3 font-mono">5日報酬</th>
+                <th class="px-4 py-3 font-mono">5日量比</th>
+                <th class="px-4 py-3">動能分數</th>
+                <th class="px-4 py-3 rounded-r-lg">技術特徵</th>
+              </tr>
+            </thead>
+            <tbody id="momentumTableBody" class="divide-y divide-darkBorder text-slate-200">
+              <!-- Dynamically populated momentum rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: 消息面與籌碼 (News) -->
+    <section id="tab-news" class="tab-content hidden space-y-6">
+      <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">📰</span>
+            <h2 class="text-base font-bold text-white">跨來源焦點個股與籌碼催化劑</h2>
+          </div>
+          <span class="text-xs text-slate-400">RSS 新聞 ＋ 三大法人 ＋ PTT 聲量 ＋ 影音觀點</span>
+        </div>
+
+        <div id="newsCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically populated news cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: 右側波段選股 (Swing) -->
+    <section id="tab-swing" class="tab-content hidden space-y-6">
+      <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">📈</span>
+            <h2 class="text-base font-bold text-white">波段右側交易四層選股清單</h2>
+          </div>
+          <span class="text-xs text-slate-400">突破確認 ｜ 回測再起 ｜ 均線多頭</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-darkBg text-slate-400 uppercase font-semibold">
+              <tr>
+                <th class="px-4 py-3 rounded-l-lg">代號 / 名稱</th>
+                <th class="px-4 py-3">族群</th>
+                <th class="px-4 py-3">進場型態</th>
+                <th class="px-4 py-3 font-mono">收盤現價</th>
+                <th class="px-4 py-3 font-mono">建議停損</th>
+                <th class="px-4 py-3">評分</th>
+                <th class="px-4 py-3 rounded-r-lg">觸發特徵</th>
+              </tr>
+            </thead>
+            <tbody id="swingTableBody" class="divide-y divide-darkBorder text-slate-200">
+              <!-- Dynamically populated swing rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-darkBorder py-6 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>台股每日戰情總看板 ｜ 本工具僅為量化研究與輔助工具，不構成任何投資建議。</div>
+      <div class="text-slate-600">每日 18:47 盤後自動同步 ｜ GitHub Actions</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
