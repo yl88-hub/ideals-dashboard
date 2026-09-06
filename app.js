@@ -20,6 +20,22 @@ async function loadData() {
   }
 }
 
+function hasMetric(v) {
+  return v !== undefined && v !== null && v !== '';
+}
+
+function fmtPct(v, digits) {
+  if (!hasMetric(v)) return '—';
+  return `${(Number(v) * 100).toFixed(digits)}%`;
+}
+
+function fmtSignedPct(v, digits, prefix) {
+  if (!hasMetric(v)) return `${prefix || ''}—`;
+  const n = Number(v) * 100;
+  const sign = n > 0 ? '+' : '';
+  return `${prefix || ''}${sign}${n.toFixed(digits)}%`;
+}
+
 function renderAll(data) {
   if (!data) return;
 
@@ -42,16 +58,21 @@ function renderAll(data) {
   document.getElementById('statLightText').className = `text-base font-bold mt-1 ${cfg.stat}`;
   document.getElementById('statAdvice').textContent = m.advice || '正常操作';
   document.getElementById('statTaiex').textContent = Number(m.taiex || 0).toLocaleString();
-  document.getElementById('statTaiex5d').textContent = `5日 ${(Number(m.taiex_r5 || 0) * 100).toFixed(1)}%`;
+  document.getElementById('statTaiex5d').textContent = fmtSignedPct(m.taiex_r5, 1, '5日 ');
   
   const ma20 = Number(m.ma20 || 0);
   const ma60 = Number(m.ma60 || 0);
   const taiex = Number(m.taiex || 0);
-  document.getElementById('statMaPosition').textContent = `${taiex >= ma20 ? '站上' : '跌破'} / ${taiex >= ma60 ? '站上' : '跌破'}`;
-  document.getElementById('statMaValues').textContent = `20MA ${ma20.toLocaleString()} ｜ 60MA ${ma60.toLocaleString()}`;
-  document.getElementById('statAdvRatio').textContent = `${(Number(m.adv_ratio || 0) * 100).toFixed(0)}%`;
-  document.getElementById('statAboveMa20').textContent = `${(Number(m.above_ma20 || 0) * 100).toFixed(1)}%`;
-  document.getElementById('statConc3').textContent = `${(Number(m.conc3 || 0) * 100).toFixed(1)}%`;
+  if (!m.ma20 && !m.ma60) {
+    document.getElementById('statMaPosition').textContent = '—';
+    document.getElementById('statMaValues').textContent = '20MA — ｜ 60MA —';
+  } else {
+    document.getElementById('statMaPosition').textContent = `${taiex >= ma20 ? '站上' : '跌破'} / ${taiex >= ma60 ? '站上' : '跌破'}`;
+    document.getElementById('statMaValues').textContent = `20MA ${ma20.toLocaleString()} ｜ 60MA ${ma60.toLocaleString()}`;
+  }
+  document.getElementById('statAdvRatio').textContent = fmtPct(m.adv_ratio, 0);
+  document.getElementById('statAboveMa20').textContent = fmtPct(m.above_ma20, 1);
+  document.getElementById('statConc3').textContent = fmtPct(m.conc3, 1);
 
   // AI Briefing
   const ai = data.ai_briefing;
@@ -116,7 +137,7 @@ function renderPlanCandidates(candidates) {
             </div>
             <div class="flex items-center space-x-2 mt-1">
               <span class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-medium">${escapeHtml(c.sector)}</span>
-              <span class="text-[11px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-medium">${escapeHtml(c.setup)}</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-medium">${escapeHtml(c.setup || '動能候選')}</span>
             </div>
           </div>
           <div class="text-right">
@@ -129,7 +150,7 @@ function renderPlanCandidates(candidates) {
         <div class="grid grid-cols-2 gap-2 p-2.5 rounded-lg bg-darkBg/60 border border-darkBorder/60 text-xs">
           <div>
             <div class="text-slate-400 text-[10px]">建議停損</div>
-            <div class="font-mono font-bold text-rose-400">${Number(c.stop_price).toFixed(1)}</div>
+            <div class="font-mono font-bold text-rose-400">${c.stop_price != null ? Number(c.stop_price).toFixed(1) : '—'}</div>
           </div>
           <div>
             <div class="text-slate-400 text-[10px]">建議部位 (風險2萬)</div>
@@ -160,7 +181,7 @@ function renderPlanExits(exits) {
   }
 
   tbody.innerHTML = filtered.map(e => {
-    const isAlert = e.status.includes('退場') || (e.warnings && e.warnings.length);
+    const isAlert = (e.status || '').includes('退場') || (e.warnings && e.warnings.length);
     const statusClass = isAlert ? 'text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded font-semibold' : 'text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-medium';
     return `
       <tr class="hover:bg-darkCardHover/50 transition">
@@ -327,7 +348,7 @@ function copyPlanToClipboard() {
   if (currentData.candidates && currentData.candidates.length) {
     text += `🚀 買進候選：\n`;
     currentData.candidates.forEach(c => {
-      text += `• ${c.code} ${c.name} (${c.stars}星, ${c.setup}, 停損${c.stop_price}, ${c.suggested_text})\n`;
+      text += `• ${c.code} ${c.name} (${c.stars}星, ${c.setup || '動能候選'}, 停損${c.stop_price ?? '—'}, ${c.suggested_text || ''})\n`;
     });
     text += `\n`;
   }
