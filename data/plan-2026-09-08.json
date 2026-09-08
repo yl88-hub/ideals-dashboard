@@ -292,22 +292,24 @@
       ]
     },
     {
-      "code": "3583",
-      "name": "辛耘",
+      "code": "7769",
+      "name": "鴻勁",
       "sector": "半導體",
-      "stars": 2,
-      "setup": "回測再起",
-      "price": 740.0,
-      "stop_price": 704.0,
-      "suggested_shares": 277,
-      "suggested_text": "277 股（零股）",
+      "stars": 3,
+      "setup": "動能跟隨",
+      "price": 6970.0,
+      "stop_price": 6482.1,
+      "suggested_shares": 20,
+      "suggested_text": "20 股（零股）",
       "sources": [
-        "右側技術",
-        "族群資金"
+        "成交動能",
+        "族群資金",
+        "消息籌碼"
       ],
       "reasons": [
-        "技術面：回測再起（回測再起、均線多頭、量價配合）",
-        "族群面：身處主流資金流入板塊【半導體】"
+        "動能面：成交前50大（量比 1.4x、5日 +18.7%）",
+        "族群面：身處主流資金流入板塊【半導體】",
+        "消息面：中性（營收）"
       ]
     },
     {
@@ -401,35 +403,163 @@
   ],
   "news_stocks": [
     {
-      "code": "2303",
-      "name": "聯電",
+      "code": "2330",
+      "name": "台積電",
       "sector": "半導體",
       "sentiment": "偏多",
       "events": [
-        "法人買賣超",
-        "法說會",
-        "營收"
+        "訂單"
       ],
-      "sources_count": 5
+      "sources_count": 6
     },
     {
-      "code": "5274",
-      "name": "信驊",
-      "sector": "IC設計",
-      "sentiment": "偏多",
+      "code": "5007",
+      "name": "三星",
+      "sector": "鋼鐵",
+      "sentiment": "中性",
       "events": [
-        "營收",
+        "擴產投資",
         "訂單"
       ],
       "sources_count": 5
     },
     {
-      "code": "2368",
-      "name": "金像電",
-      "sector": "PCB/載板",
+      "code": "1303",
+      "name": "南亞",
+      "sector": "塑化",
+      "sentiment": "偏多",
+      "events": [
+        "擴產投資",
+        "法人買賣超",
+        "營收"
+      ],
+      "sources_count": 5
+    },
+    {
+      "code": "2603",
+      "name": "長榮",
+      "sector": "航運",
+      "sentiment": "偏多",
+      "events": [
+        "營收",
+        "社群熱議"
+      ],
+      "sources_count": 5
+    },
+    {
+      "code": "2338",
+      "name": "光罩",
+      "sector": "半導體",
       "sentiment": "中性",
       "events": [],
-      "sources_count": 5
+      "sources_count": 4
+    },
+    {
+      "code": "2356",
+      "name": "英業達",
+      "sector": "AI伺服器",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超",
+        "營收"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "1598",
+      "name": "岱宇",
+      "sector": "運動休閒",
+      "sentiment": "中性",
+      "events": [
+        "法說會",
+        "營收",
+        "訂單"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "2801",
+      "name": "彰銀",
+      "sector": "金融保險",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超",
+        "財報"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "2353",
+      "name": "宏碁",
+      "sector": "電腦及週邊",
+      "sentiment": "中性",
+      "events": [
+        "法人買賣超",
+        "營收"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "1432",
+      "name": "大魯閣",
+      "sector": "運動休閒",
+      "sentiment": "中性",
+      "events": [],
+      "sources_count": 4
+    },
+    {
+      "code": "2344",
+      "name": "華邦電",
+      "sector": "記憶體",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "3037",
+      "name": "欣興",
+      "sector": "PCB/載板",
+      "sentiment": "中性",
+      "events": [
+        "擴產投資",
+        "營收"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "1301",
+      "name": "台塑",
+      "sector": "塑化",
+      "sentiment": "偏多",
+      "events": [
+        "擴產投資",
+        "營收"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2382",
+      "name": "廣達",
+      "sector": "AI伺服器",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超",
+        "營收"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "3045",
+      "name": "台灣大",
+      "sector": "電信",
+      "sentiment": "偏多",
+      "events": [
+        "併購/募資",
+        "營收"
+      ],
+      "sources_count": 3
     },
     {
       "code": "2027",
@@ -438,165 +568,51 @@
       "sentiment": "偏多",
       "events": [
         "法人買賣超",
-        "營收",
-        "總經/政策",
-        "訂單"
-      ],
-      "sources_count": 5
-    },
-    {
-      "code": "2344",
-      "name": "華邦電",
-      "sector": "記憶體",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超",
-        "營收",
-        "社群熱議"
-      ],
-      "sources_count": 5
-    },
-    {
-      "code": "3037",
-      "name": "欣興",
-      "sector": "PCB/載板",
-      "sentiment": "偏空",
-      "events": [
-        "法人買賣超",
-        "社群熱議"
-      ],
-      "sources_count": 4
-    },
-    {
-      "code": "2327",
-      "name": "國巨*",
-      "sector": "電子零組件",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超"
-      ],
-      "sources_count": 4
-    },
-    {
-      "code": "6446",
-      "name": "藥華藥",
-      "sector": "生技醫療",
-      "sentiment": "偏空",
-      "events": [],
-      "sources_count": 4
-    },
-    {
-      "code": "2030",
-      "name": "彰源",
-      "sector": "鋼鐵",
-      "sentiment": "偏多",
-      "events": [
-        "訂單"
-      ],
-      "sources_count": 4
-    },
-    {
-      "code": "6657",
-      "name": "華安",
-      "sector": "生技醫療",
-      "sentiment": "中性",
-      "events": [],
-      "sources_count": 4
-    },
-    {
-      "code": "3324",
-      "name": "雙鴻",
-      "sector": "散熱",
-      "sentiment": "偏多",
-      "events": [],
-      "sources_count": 3
-    },
-    {
-      "code": "3189",
-      "name": "景碩",
-      "sector": "PCB/載板",
-      "sentiment": "偏空",
-      "events": [
         "營收"
       ],
       "sources_count": 3
     },
     {
-      "code": "3363",
-      "name": "上詮",
-      "sector": "光通訊",
-      "sentiment": "偏空",
-      "events": [
-        "擴產投資",
-        "營收",
-        "財報"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "4576",
-      "name": "大銀微系統",
-      "sector": "電機機械",
-      "sentiment": "偏多",
-      "events": [
-        "營收"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "3665",
-      "name": "貿聯-KY",
-      "sector": "汽車零組件",
+      "code": "2890",
+      "name": "永豐金",
+      "sector": "金融",
       "sentiment": "中性",
       "events": [
+        "法人買賣超",
         "營收"
       ],
       "sources_count": 3
     },
     {
-      "code": "2317",
-      "name": "鴻海",
-      "sector": "AI伺服器",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "2072",
-      "name": "世紀風電",
-      "sector": "綠能環保",
-      "sentiment": "偏多",
-      "events": [
-        "營收"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "2603",
-      "name": "長榮",
+      "code": "2615",
+      "name": "萬海",
       "sector": "航運",
-      "sentiment": "偏空",
+      "sentiment": "偏多",
       "events": [
-        "法人買賣超"
+        "營收",
+        "訂單"
       ],
       "sources_count": 3
     },
     {
-      "code": "3661",
-      "name": "世芯-KY",
-      "sector": "IC設計",
-      "sentiment": "中性",
-      "events": [],
+      "code": "6585",
+      "name": "鼎基",
+      "sector": "其他",
+      "sentiment": "偏多",
+      "events": [
+        "營收"
+      ],
       "sources_count": 3
     },
     {
-      "code": "5007",
-      "name": "三星",
-      "sector": "鋼鐵",
-      "sentiment": "中性",
-      "events": [],
+      "code": "2324",
+      "name": "仁寶",
+      "sector": "PC/NB",
+      "sentiment": "偏空",
+      "events": [
+        "法人買賣超",
+        "營收"
+      ],
       "sources_count": 3
     }
   ],
