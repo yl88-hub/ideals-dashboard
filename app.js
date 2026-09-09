@@ -4,11 +4,13 @@ let currentSearch = '';
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadData();
+  const tab = new URLSearchParams(location.search).get('tab');
+  if (tab) switchTab(tab);
 });
 
 async function loadData() {
   try {
-    const res = await fetch('data/latest.json');
+    const res = await fetch('data/latest.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     currentData = await res.json();
     renderAll(currentData);
@@ -24,6 +26,14 @@ function hasMetric(v) {
   return v !== undefined && v !== null && v !== '';
 }
 
+function hasIndexMa(v) {
+  return hasMetric(v) && Number(v) !== 0;
+}
+
+function marketExtrasMissing(m) {
+  return !hasIndexMa(m.ma20) && !hasIndexMa(m.ma60);
+}
+
 function fmtPct(v, digits) {
   if (!hasMetric(v)) return '—';
   return `${(Number(v) * 100).toFixed(digits)}%`;
@@ -34,6 +44,28 @@ function fmtSignedPct(v, digits, prefix) {
   const n = Number(v) * 100;
   const sign = n > 0 ? '+' : '';
   return `${prefix || ''}${sign}${n.toFixed(digits)}%`;
+}
+
+function hasOwn(obj, key) {
+  return !!obj && Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+/** 舊 latest.json 沒有 share_d5，且把 5 日佔比變化誤塞在 rs5、share_z 全為 0。 */
+function isLegacySectorRow(s) {
+  return !hasOwn(s, 'share_d5') && (!hasMetric(s.share_z) || Number(s.share_z) === 0);
+}
+
+function sectorShareD5(s) {
+  if (hasOwn(s, 'share_d5')) {
+    return hasMetric(s.share_d5) ? Number(s.share_d5) : null;
+  }
+  if (isLegacySectorRow(s) && hasMetric(s.rs5)) return Number(s.rs5);
+  return null;
+}
+
+function sectorRelRs5(s) {
+  if (isLegacySectorRow(s)) return null;
+  return hasMetric(s.rs5) ? Number(s.rs5) : null;
 }
 
 function renderAll(data) {
@@ -58,19 +90,25 @@ function renderAll(data) {
   document.getElementById('statLightText').className = `text-base font-bold mt-1 ${cfg.stat}`;
   document.getElementById('statAdvice').textContent = m.advice || '正常操作';
   document.getElementById('statTaiex').textContent = Number(m.taiex || 0).toLocaleString();
-  document.getElementById('statTaiex5d').textContent = fmtSignedPct(m.taiex_r5, 1, '5日 ');
-  
+  const extrasMissing = marketExtrasMissing(m);
+  document.getElementById('statTaiex5d').textContent =
+    (extrasMissing && !Number(m.taiex_r5)) ? '5日 —' : fmtSignedPct(m.taiex_r5, 1, '5日 ');
+
   const ma20 = Number(m.ma20 || 0);
   const ma60 = Number(m.ma60 || 0);
   const taiex = Number(m.taiex || 0);
-  if (!m.ma20 && !m.ma60) {
+  if (!hasIndexMa(m.ma20) && !hasIndexMa(m.ma60)) {
     document.getElementById('statMaPosition').textContent = '—';
     document.getElementById('statMaValues').textContent = '20MA — ｜ 60MA —';
   } else {
-    document.getElementById('statMaPosition').textContent = `${taiex >= ma20 ? '站上' : '跌破'} / ${taiex >= ma60 ? '站上' : '跌破'}`;
-    document.getElementById('statMaValues').textContent = `20MA ${ma20.toLocaleString()} ｜ 60MA ${ma60.toLocaleString()}`;
+    const pos20 = hasIndexMa(m.ma20) ? (taiex >= ma20 ? '站上' : '跌破') : '—';
+    const pos60 = hasIndexMa(m.ma60) ? (taiex >= ma60 ? '站上' : '跌破') : '—';
+    document.getElementById('statMaPosition').textContent = `${pos20} / ${pos60}`;
+    document.getElementById('statMaValues').textContent =
+      `20MA ${hasIndexMa(m.ma20) ? ma20.toLocaleString() : '—'} ｜ 60MA ${hasIndexMa(m.ma60) ? ma60.toLocaleString() : '—'}`;
   }
-  document.getElementById('statAdvRatio').textContent = fmtPct(m.adv_ratio, 0);
+  document.getElementById('statAdvRatio').textContent =
+    (extrasMissing && !Number(m.adv_ratio)) ? '—' : fmtPct(m.adv_ratio, 0);
   document.getElementById('statAboveMa20').textContent = fmtPct(m.above_ma20, 1);
   document.getElementById('statConc3').textContent = fmtPct(m.conc3, 1);
 
@@ -215,13 +253,15 @@ function renderRotation(sectors) {
 
   tbody.innerHTML = filtered.map(s => {
     const badge = stageColors[s.stage] || 'bg-slate-500/10 text-slate-400';
+    const d5 = sectorShareD5(s);
+    const rel = sectorRelRs5(s);
     return `
       <tr class="hover:bg-darkCardHover/50 transition">
         <td class="px-4 py-3 font-bold text-white">${escapeHtml(s.name)}</td>
         <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[11px] font-semibold ${badge}">${escapeHtml(s.stage)}</span></td>
         <td class="px-4 py-3 font-mono font-semibold text-slate-200">${(Number(s.share || 0) * 100).toFixed(1)}%</td>
-        <td class="px-4 py-3 font-mono ${Number(s.share_z || 0) >= 0 ? 'text-emerald-400' : 'text-slate-400'}">${Number(s.share_z || 0) >= 0 ? '+' : ''}${Number(s.share_z || 0).toFixed(2)}</td>
-        <td class="px-4 py-3 font-mono ${Number(s.rs5 || 0) >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${Number(s.rs5 || 0) >= 0 ? '+' : ''}${(Number(s.rs5 || 0) * 100).toFixed(1)}%</td>
+        <td class="px-4 py-3 font-mono ${d5 == null ? 'text-slate-500' : d5 >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${d5 == null ? '—' : fmtSignedPct(d5, 1)}</td>
+        <td class="px-4 py-3 font-mono ${rel == null ? 'text-slate-500' : rel >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${rel == null ? '—' : fmtSignedPct(rel, 1)}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-2">
             <div class="w-16 bg-darkBg rounded-full h-1.5 overflow-hidden">
@@ -230,7 +270,7 @@ function renderRotation(sectors) {
             <span class="font-mono text-slate-300 font-semibold">${Number(s.score || 0).toFixed(0)}</span>
           </div>
         </td>
-        <td class="px-4 py-3 font-mono text-slate-300">${s.heat_days || 1} 日</td>
+        <td class="px-4 py-3 font-mono text-slate-300">${hasMetric(s.heat_days) ? Number(s.heat_days) + ' 日' : '—'}</td>
       </tr>
     `;
   }).join('');
@@ -342,7 +382,11 @@ function copyPlanToClipboard() {
   if (!currentData) return;
   const m = currentData.market || {};
   let text = `🎯【台股每日作戰計劃書】${currentData.date || '最新'}\n`;
-  text += `大盤環境：${m.light?.toUpperCase() || 'GREEN'}（加權 ${Number(m.taiex || 0).toLocaleString()}）\n`;
+  const r5txt = hasMetric(m.taiex_r5) ? `，5日 ${fmtSignedPct(m.taiex_r5, 1)}` : '';
+  const maTxt = (hasIndexMa(m.ma20) || hasIndexMa(m.ma60))
+    ? `，MA20 ${hasIndexMa(m.ma20) ? Number(m.ma20).toLocaleString() : '—'} / MA60 ${hasIndexMa(m.ma60) ? Number(m.ma60).toLocaleString() : '—'}`
+    : '';
+  text += `大盤環境：${m.light?.toUpperCase() || 'GREEN'}（加權 ${Number(m.taiex || 0).toLocaleString()}${r5txt}${maTxt}）\n`;
   text += `方針指引：${m.advice || '正常操作'}\n\n`;
   
   if (currentData.candidates && currentData.candidates.length) {
@@ -407,9 +451,9 @@ function getFallbackData() {
       { code: "2603", name: "長榮", sector: "航運", price: 185.0, stop_price: 190.0, warnings: ["跌破MA10", "族群退潮"], status: "⚠️ 退場警示", action_advice: "⚠️ 留意停損並依紀律調節" }
     ],
     hot_sectors: [
-      { name: "半導體", stage: "主升", share: 0.185, share_z: 1.4, rs5: 0.032, score: 88.0, heat_days: 4 },
-      { name: "電腦及週邊", stage: "初升", share: 0.124, share_z: 0.8, rs5: 0.021, score: 76.0, heat_days: 2 },
-      { name: "電機機械", stage: "初升", share: 0.095, share_z: 0.5, rs5: 0.018, score: 70.0, heat_days: 1 }
+      { name: "半導體", stage: "主升", share: 0.185, share_z: 1.4, share_d5: 0.012, rs5: 0.032, score: 88.0, heat_days: 4 },
+      { name: "電腦及週邊", stage: "初升", share: 0.124, share_z: 0.8, share_d5: 0.008, rs5: 0.021, score: 76.0, heat_days: 2 },
+      { name: "電機機械", stage: "初升", share: 0.095, share_z: 0.5, share_d5: 0.006, rs5: 0.018, score: 70.0, heat_days: 1 }
     ],
     momentum_top: [
       { code: "3450", name: "聯鈞", close: 240.0, ret_5d: 0.082, vol_ratio: 2.1, score: 78.0, signals: "RSI強,均線多頭,量能激增" },

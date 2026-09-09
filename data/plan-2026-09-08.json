@@ -3,10 +3,10 @@
   "market": {
     "light": "yellow",
     "taiex": 47106.0,
-    "taiex_r5": 0.0,
-    "ma20": 0.0,
-    "ma60": 0.0,
-    "adv_ratio": 0.0,
+    "taiex_r5": 0.003,
+    "ma20": 45877.0,
+    "ma60": 45097.0,
+    "adv_ratio": 0.26,
     "above_ma20": 0.363,
     "conc3": 0.7170000000000001,
     "advice": "黃燈環境，市況轉弱，部位減半並提高防守標準"
@@ -16,257 +16,321 @@
       "name": "金融保險",
       "stage": "—",
       "share": 0.027000000000000003,
-      "share_z": 0.0,
-      "rs5": 0.002,
-      "score": 84.0
+      "share_z": -0.02,
+      "share_d5": 0.002,
+      "rs5": 0.036000000000000004,
+      "score": 84.0,
+      "heat_days": 0
     },
     {
       "name": "食品",
       "stage": "—",
       "share": 0.001,
       "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 83.0
+      "share_d5": 0.0,
+      "rs5": 0.002,
+      "score": 83.0,
+      "heat_days": 1
     },
     {
       "name": "綠能環保",
       "stage": "初升",
       "share": 0.006999999999999999,
-      "share_z": 0.0,
-      "rs5": 0.005,
-      "score": 75.0
+      "share_z": 3.58,
+      "share_d5": 0.005,
+      "rs5": -0.013000000000000001,
+      "score": 75.0,
+      "heat_days": 1
     },
     {
       "name": "貿易百貨",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
+      "share_z": -0.48,
+      "share_d5": 0.0,
       "rs5": 0.0,
-      "score": 74.0
+      "score": 74.0,
+      "heat_days": 0
     },
     {
       "name": "橡膠",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 65.0
+      "share_z": 0.6,
+      "share_d5": 0.0,
+      "rs5": -0.03,
+      "score": 65.0,
+      "heat_days": 1
     },
     {
       "name": "電機機械",
       "stage": "初升",
       "share": 0.032,
-      "share_z": 0.0,
-      "rs5": 0.015,
-      "score": 65.0
+      "share_z": 1.91,
+      "share_d5": 0.015,
+      "rs5": -0.018000000000000002,
+      "score": 65.0,
+      "heat_days": 3
     },
     {
       "name": "居家生活",
       "stage": "—",
       "share": 0.0,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 64.0
+      "share_z": -0.66,
+      "share_d5": 0.0,
+      "rs5": -0.002,
+      "score": 64.0,
+      "heat_days": 0
     },
     {
       "name": "鋼鐵",
       "stage": "—",
       "share": 0.002,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 62.0
+      "share_z": -0.71,
+      "share_d5": 0.0,
+      "rs5": -0.003,
+      "score": 62.0,
+      "heat_days": 0
     },
     {
       "name": "汽車",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 60.0
+      "share_z": null,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 60.0,
+      "heat_days": null
     },
     {
       "name": "資訊服務",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 59.0
+      "share_z": -0.24,
+      "share_d5": 0.0,
+      "rs5": -0.013000000000000001,
+      "score": 59.0,
+      "heat_days": 0
     },
     {
       "name": "半導體",
       "stage": "初升",
       "share": 0.4,
-      "share_z": 0.0,
-      "rs5": 0.069,
-      "score": 59.0
+      "share_z": null,
+      "share_d5": 0.069,
+      "rs5": null,
+      "score": 59.0,
+      "heat_days": null
     },
     {
       "name": "水泥",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": -0.002,
-      "score": 59.0
+      "share_z": -0.48,
+      "share_d5": -0.002,
+      "rs5": -0.01,
+      "score": 59.0,
+      "heat_days": 0
     },
     {
       "name": "其他",
       "stage": "—",
       "share": 0.003,
-      "share_z": 0.0,
-      "rs5": -0.001,
-      "score": 57.0
+      "share_z": null,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 57.0,
+      "heat_days": null
     },
     {
       "name": "紡織纖維",
       "stage": "—",
       "share": 0.002,
-      "share_z": 0.0,
-      "rs5": -0.001,
-      "score": 57.0
+      "share_z": null,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 57.0,
+      "heat_days": null
     },
     {
       "name": "其他電子",
       "stage": "初升",
       "share": 0.053,
-      "share_z": 0.0,
-      "rs5": 0.017,
-      "score": 56.0
+      "share_z": null,
+      "share_d5": 0.017,
+      "rs5": null,
+      "score": 56.0,
+      "heat_days": null
     },
     {
       "name": "通信網路",
       "stage": "—",
       "share": 0.031,
-      "share_z": 0.0,
-      "rs5": -0.003,
-      "score": 56.0
+      "share_z": null,
+      "share_d5": -0.003,
+      "rs5": null,
+      "score": 56.0,
+      "heat_days": null
     },
     {
       "name": "電器電纜",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 55.0
+      "share_z": null,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 55.0,
+      "heat_days": null
     },
     {
       "name": "生技醫療",
       "stage": "—",
       "share": 0.012,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 53.0
+      "share_z": null,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 53.0,
+      "heat_days": null
     },
     {
       "name": "運動休閒",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 53.0
+      "share_z": null,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 53.0,
+      "heat_days": null
     },
     {
       "name": "電腦及週邊",
       "stage": "主升",
       "share": 0.106,
-      "share_z": 0.0,
-      "rs5": 0.035,
-      "score": 47.0
+      "share_z": null,
+      "share_d5": 0.035,
+      "rs5": null,
+      "score": 47.0,
+      "heat_days": null
     },
     {
       "name": "油電燃氣",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": -0.001,
-      "score": 46.0
+      "share_z": null,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 46.0,
+      "heat_days": null
     },
     {
       "name": "建材營造",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 45.0
+      "share_z": null,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 45.0,
+      "heat_days": null
     },
     {
       "name": "光電",
       "stage": "—",
       "share": 0.064,
-      "share_z": 0.0,
-      "rs5": -0.006,
-      "score": 44.0
+      "share_z": null,
+      "share_d5": -0.006,
+      "rs5": null,
+      "score": 44.0,
+      "heat_days": null
     },
     {
       "name": "塑膠",
       "stage": "退潮",
       "share": 0.022000000000000002,
-      "share_z": 0.0,
-      "rs5": -0.023,
-      "score": 43.0
+      "share_z": null,
+      "share_d5": -0.023,
+      "rs5": null,
+      "score": 43.0,
+      "heat_days": null
     },
     {
       "name": "航運",
       "stage": "退潮",
       "share": 0.008,
-      "share_z": 0.0,
-      "rs5": -0.003,
-      "score": 42.0
+      "share_z": null,
+      "share_d5": -0.003,
+      "rs5": null,
+      "score": 42.0,
+      "heat_days": null
     },
     {
       "name": "電子通路",
       "stage": "—",
       "share": 0.005,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 39.0
+      "share_z": null,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 39.0,
+      "heat_days": null
     },
     {
       "name": "觀光餐旅",
       "stage": "—",
       "share": 0.0,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 32.0
+      "share_z": null,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 32.0,
+      "heat_days": null
     },
     {
       "name": "玻璃陶瓷",
       "stage": "—",
       "share": 0.001,
-      "share_z": 0.0,
-      "rs5": -0.001,
-      "score": 28.0
+      "share_z": null,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 28.0,
+      "heat_days": null
     },
     {
       "name": "造紙",
       "stage": "—",
       "share": 0.0,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 28.0
+      "share_z": null,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 28.0,
+      "heat_days": null
     },
     {
       "name": "數位雲端",
       "stage": "—",
       "share": 0.0,
-      "share_z": 0.0,
-      "rs5": 0.0,
-      "score": 25.0
+      "share_z": null,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 25.0,
+      "heat_days": null
     },
     {
       "name": "化學",
       "stage": "—",
       "share": 0.003,
-      "share_z": 0.0,
-      "rs5": -0.006999999999999999,
-      "score": 18.0
+      "share_z": null,
+      "share_d5": -0.006999999999999999,
+      "rs5": null,
+      "score": 18.0,
+      "heat_days": null
     },
     {
       "name": "電子零組件",
       "stage": "退潮",
       "share": 0.21100000000000002,
-      "share_z": 0.0,
-      "rs5": -0.098,
-      "score": 15.0
+      "share_z": null,
+      "share_d5": -0.098,
+      "rs5": null,
+      "score": 15.0,
+      "heat_days": null
     }
   ],
   "candidates": [
@@ -292,6 +356,25 @@
       ]
     },
     {
+      "code": "4961",
+      "name": "天鈺",
+      "sector": "半導體",
+      "stars": 2,
+      "setup": "突破確認",
+      "price": 177.5,
+      "stop_price": 164.0,
+      "suggested_shares": 740,
+      "suggested_text": "740 股（零股）",
+      "sources": [
+        "右側技術",
+        "族群資金"
+      ],
+      "reasons": [
+        "技術面：突破確認（突破確認、均線多頭、量價配合、近20日高、MA20>MA60）",
+        "族群面：身處主流資金流入板塊【半導體】"
+      ]
+    },
+    {
       "code": "3583",
       "name": "辛耘",
       "sector": "半導體",
@@ -307,25 +390,6 @@
       ],
       "reasons": [
         "技術面：回測再起（回測再起、均線多頭、量價配合）",
-        "族群面：身處主流資金流入板塊【半導體】"
-      ]
-    },
-    {
-      "code": "6937",
-      "name": "天虹",
-      "sector": "半導體",
-      "stars": 2,
-      "setup": "突破確認",
-      "price": 287.5,
-      "stop_price": 278.0,
-      "suggested_shares": 869,
-      "suggested_text": "869 股（零股）",
-      "sources": [
-        "右側技術",
-        "族群資金"
-      ],
-      "reasons": [
-        "技術面：突破確認（突破確認、均線多頭、量價配合、近20日高、MA20>MA60）",
         "族群面：身處主流資金流入板塊【半導體】"
       ]
     }
@@ -347,7 +411,7 @@
     {
       "code": "2409",
       "name": "友達",
-      "close": 29.6,
+      "close": 0.0,
       "ret_5d": 0.12119999999999999,
       "vol_ratio": 3.61,
       "score": 94.2,
@@ -356,7 +420,7 @@
     {
       "code": "7769",
       "name": "鴻勁",
-      "close": 6970.0,
+      "close": 0.0,
       "ret_5d": 0.18739999999999998,
       "vol_ratio": 1.4,
       "score": 64.4,
@@ -365,7 +429,7 @@
     {
       "code": "3231",
       "name": "緯創",
-      "close": 186.5,
+      "close": 0.0,
       "ret_5d": 0.024700000000000003,
       "vol_ratio": 2.74,
       "score": 44.0,
@@ -374,7 +438,7 @@
     {
       "code": "3006",
       "name": "晶豪科",
-      "close": 298.5,
+      "close": 0.0,
       "ret_5d": 0.0718,
       "vol_ratio": 1.58,
       "score": 42.0,
@@ -383,7 +447,7 @@
     {
       "code": "6672",
       "name": "騰輝電子-KY",
-      "close": 294.0,
+      "close": 0.0,
       "ret_5d": 0.0557,
       "vol_ratio": 1.92,
       "score": 39.4,
@@ -392,7 +456,7 @@
     {
       "code": "8996",
       "name": "高力",
-      "close": 1225.0,
+      "close": 0.0,
       "ret_5d": 0.0426,
       "vol_ratio": 1.45,
       "score": 26.6,
