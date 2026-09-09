@@ -181,18 +181,30 @@
 
     <!-- TAB 1: 綜合買賣作戰計劃書 (Master Plan) -->
     <section id="tab-plan" class="tab-content space-y-6">
-      <!-- 買進焦點清單 -->
+      <!-- 買進／觀察清單 -->
       <div class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
         <div class="flex items-center justify-between border-b border-darkBorder pb-3">
           <div class="flex items-center space-x-2">
             <span class="text-xl">🚀</span>
-            <h2 class="text-base font-bold text-white">明日買進候選名單（多維共振篩選）</h2>
+            <h2 id="planBuyHeading" class="text-base font-bold text-white">明日買進候選（須右側＋族群）</h2>
           </div>
-          <span class="text-xs text-slate-400">依單筆 2% 風險預算試算部位</span>
+          <span class="text-xs text-slate-400">消息面只做註解、不加星</span>
         </div>
 
         <div id="planCandidatesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Dynamically populated candidate cards -->
+        </div>
+      </div>
+
+      <div id="planWatchSection" class="rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">👀</span>
+            <h2 id="planWatchHeading" class="text-base font-bold text-white">觀察名單</h2>
+          </div>
+          <span class="text-xs text-slate-400">動能掃描或缺右側／族群；黃燈全日觀察</span>
+        </div>
+        <div id="planWatchContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         </div>
       </div>
 

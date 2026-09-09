@@ -129,8 +129,11 @@ function renderAll(data) {
     aiBox.classList.add('hidden');
   }
 
-  // 2. Tab 1: Candidates
-  renderPlanCandidates(data.candidates || []);
+  // 2. Tab 1: Candidates / watch
+  const lists = planLists(data);
+  renderPlanListHeadings(data.market || {});
+  renderPlanCandidates(lists.buy, 'planCandidatesContainer', data.market || {});
+  renderPlanWatch(lists.watch);
   renderPlanExits(data.exit_warnings || []);
 
   // 3. Tab 2: Rotation
@@ -146,14 +149,57 @@ function renderAll(data) {
   renderSwing(data.swing_picks || []);
 }
 
-function renderPlanCandidates(candidates) {
-  const container = document.getElementById('planCandidatesContainer');
+function planLists(data) {
+  const light = (data.market || {}).light;
+  const buy = data.candidates || [];
+  const watch = data.watchlist || [];
+  // 舊黃燈 JSON 沒有 watchlist：把 candidates 當觀察名單
+  if (watch.length === 0 && buy.length && light === 'yellow') {
+    return { buy: [], watch: buy };
+  }
+  return { buy, watch };
+}
+
+function renderPlanListHeadings(market) {
+  const buyH = document.getElementById('planBuyHeading');
+  const watchH = document.getElementById('planWatchHeading');
+  if (!buyH || !watchH) return;
+  if (market.light === 'red') {
+    buyH.textContent = '新倉：紅燈禁止';
+    watchH.textContent = '觀察名單';
+  } else if (market.light === 'yellow') {
+    buyH.textContent = '黃燈不開新倉';
+    watchH.textContent = '黃燈觀察名單（不是買進指令）';
+  } else {
+    buyH.textContent = '明日買進候選（須右側＋族群）';
+    watchH.textContent = '觀察名單（動能掃描或缺右側／族群）';
+  }
+}
+
+function renderPlanWatch(watch) {
+  const section = document.getElementById('planWatchSection');
+  const container = document.getElementById('planWatchContainer');
+  if (!container) return;
+  if (section) {
+    section.classList.toggle('hidden', !watch.length && currentData?.market?.light === 'green');
+  }
+  renderPlanCandidates(watch, 'planWatchContainer', currentData?.market || {});
+}
+
+function renderPlanCandidates(candidates, containerId, market) {
+  const container = document.getElementById(containerId || 'planCandidatesContainer');
+  if (!container) return;
   const filtered = candidates.filter(c => matchSearch(c.code, c.name, c.sector, c.setup));
+  const isBuyBox = containerId !== 'planWatchContainer';
 
   if (!filtered.length) {
+    let empty = '今日無符合條件之標的';
+    if (market.light === 'red' && isBuyBox) empty = '🔴 紅燈防禦日：暫停開立新多單';
+    else if (market.light === 'yellow' && isBuyBox) empty = '🟡 黃燈：買進欄為空，請看下方觀察名單';
+    else if (isBuyBox) empty = '今日無符合右側＋族群的買進候選';
     container.innerHTML = `
       <div class="col-span-full py-8 text-center text-slate-400 text-xs bg-darkBg/40 rounded-xl border border-darkBorder/40">
-        ${currentData?.market?.light === 'red' ? '🔴 紅燈防禦日：暫停開立新多單' : '今日無符合條件之候選標的，維持耐心'}
+        ${empty}
       </div>
     `;
     return;
@@ -359,7 +405,10 @@ function switchTab(tabId) {
 function handleSearch(val) {
   currentSearch = (val || '').trim().toLowerCase();
   if (currentData) {
-    renderPlanCandidates(currentData.candidates || []);
+    renderPlanListHeadings(currentData.market || {});
+    const lists = planLists(currentData);
+    renderPlanCandidates(lists.buy, 'planCandidatesContainer', currentData.market || {});
+    renderPlanWatch(lists.watch);
     renderPlanExits(currentData.exit_warnings || []);
     renderRotation(currentData.hot_sectors || []);
     renderMomentum(currentData.momentum_top || []);
@@ -389,10 +438,18 @@ function copyPlanToClipboard() {
   text += `大盤環境：${m.light?.toUpperCase() || 'GREEN'}（加權 ${Number(m.taiex || 0).toLocaleString()}${r5txt}${maTxt}）\n`;
   text += `方針指引：${m.advice || '正常操作'}\n\n`;
   
-  if (currentData.candidates && currentData.candidates.length) {
+  const lists = planLists(currentData);
+  if (lists.buy.length) {
     text += `🚀 買進候選：\n`;
-    currentData.candidates.forEach(c => {
+    lists.buy.forEach(c => {
       text += `• ${c.code} ${c.name} (${c.stars}星, ${c.setup || '動能候選'}, 停損${c.stop_price ?? '—'}, ${c.suggested_text || ''})\n`;
+    });
+    text += `\n`;
+  }
+  if (lists.watch.length) {
+    text += `👀 觀察名單：\n`;
+    lists.watch.forEach(c => {
+      text += `• ${c.code} ${c.name} (${c.stars}星, ${c.setup || '觀察'})\n`;
     });
     text += `\n`;
   }
@@ -434,16 +491,18 @@ function getFallbackData() {
     },
     candidates: [
       {
-        code: "3450", name: "聯鈞", sector: "半導體", price: 240.0, stop_price: 225.0, stars: 3, setup: "突破確認",
-        suggested_text: "1 張", reasons: ["技術面：突破確認（跳空創高+爆量）", "動能面：成交前50大（量比 2.1x、5日 +8.2%）", "族群面：身處主流資金流入板塊【半導體】", "消息面：偏多（營收創高、投信買超）"]
+        code: "3450", name: "聯鈞", sector: "半導體", price: 240.0, stop_price: 225.0, stars: 3, role: "buy", setup: "突破確認",
+        suggested_text: "1 張", reasons: ["技術面：突破確認（跳空創高+爆量）", "動能面：成交前50大（量比 2.1x、5日 +8.2%）", "族群面：身處主流資金流入板塊【半導體】", "消息面（註解、不加星）：偏多（營收創高、投信買超）"]
       },
       {
-        code: "1519", name: "華城", sector: "電機機械", price: 680.0, stop_price: 645.0, stars: 3, setup: "回測再起",
+        code: "1519", name: "華城", sector: "電機機械", price: 680.0, stop_price: 645.0, stars: 3, role: "buy", setup: "回測再起",
         suggested_text: "367 股（零股）", reasons: ["技術面：回測再起（守穩20MA反彈）", "動能面：成交前50大（量比 1.5x、5日 +6.5%）", "族群面：身處主流資金流入板塊【電機機械】"]
-      },
+      }
+    ],
+    watchlist: [
       {
-        code: "5243", name: "乙盛-KY", sector: "光電", price: 91.9, stop_price: 88.6, stars: 2, setup: "突破確認",
-        suggested_text: "2 張", reasons: ["技術面：突破確認（均線多頭、量價配合、近20日高）", "族群面：身處主流資金流入板塊【光電】"]
+        code: "2330", name: "台積電", sector: "半導體", price: 980.0, stop_price: 945.0, stars: 2, role: "watch", setup: "動能跟隨",
+        suggested_text: "觀察", reasons: ["動能面：成交前50大", "族群面：半導體主升（無右側確認）"]
       }
     ],
     exit_warnings: [
