@@ -131,6 +131,14 @@
         </div>
       </div>
 
+      <div id="hitrateBar" class="mt-4 px-4 py-3 rounded-xl bg-darkBg/60 border border-darkBorder/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
+        <div>
+          <div class="text-xs text-slate-400 font-medium">閉環校準 · 過去 ⭐⭐⭐ 的 5 日超額</div>
+          <div id="hitrateHeadline" class="text-sm font-semibold text-slate-200 mt-0.5">載入中…</div>
+        </div>
+        <div id="hitrateMeta" class="text-[11px] text-slate-500 font-mono">隔日開盤進／第 5 日收盤出／扣 0.6%；n&lt;30 不下結論</div>
+      </div>
+
       <!-- AI Morning Briefing Banner (if available) -->
       <div id="aiBriefingBox" class="mt-4 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/20">
         <div class="flex items-start space-x-3">
@@ -278,6 +286,32 @@
             </thead>
             <tbody id="rotationTableBody" class="divide-y divide-darkBorder text-slate-200">
               <!-- Dynamically populated rotation rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="themeSectorsSection" class="hidden rounded-2xl bg-darkCard border border-darkBorder p-5 shadow-xl space-y-4">
+        <div class="flex items-center justify-between border-b border-darkBorder pb-3">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl">🧩</span>
+            <h2 class="text-base font-bold text-white">題材輪動（concepts.json）</h2>
+          </div>
+          <span class="text-xs text-slate-400">指揮層族群票＝官方初升／主升或題材熱度前段</span>
+        </div>
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-darkBg text-slate-400 uppercase font-semibold">
+              <tr>
+                <th class="px-4 py-3 rounded-l-lg">題材</th>
+                <th class="px-4 py-3">階段</th>
+                <th class="px-4 py-3 font-mono">成交值佔比</th>
+                <th class="px-4 py-3 font-mono">5日占比變化</th>
+                <th class="px-4 py-3 font-mono">相對大盤 5日</th>
+                <th class="px-4 py-3 rounded-r-lg">熱度分數</th>
+              </tr>
+            </thead>
+            <tbody id="themeTableBody" class="divide-y divide-darkBorder text-slate-200">
             </tbody>
           </table>
         </div>

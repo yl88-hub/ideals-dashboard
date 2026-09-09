@@ -1,0 +1,110 @@
+{
+  "asof": "2026-09-08",
+  "plan_dates": [
+    "2026-09-01",
+    "2026-09-04",
+    "2026-09-07",
+    "2026-09-08"
+  ],
+  "min_sample": 30,
+  "cost_round": 0.006,
+  "horizon": 5,
+  "n_signals": 18,
+  "n_completed": 0,
+  "n_pending": 18,
+  "n_no_price": 0,
+  "sample_ok": false,
+  "headline": "樣本不足（⭐⭐⭐ 已完成 0／需 30），不下結論",
+  "stars3": {
+    "n": 0,
+    "win_rate": null,
+    "mean_return": null,
+    "mean_excess": null,
+    "worst": null,
+    "sample_ok": false
+  },
+  "by_stars": {
+    "1": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    },
+    "2": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    },
+    "3": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    }
+  },
+  "by_light": {
+    "green": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    },
+    "yellow": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    },
+    "red": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    }
+  },
+  "by_rightside": {
+    "yes": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    },
+    "no": {
+      "n": 0,
+      "win_rate": null,
+      "mean_return": null,
+      "mean_excess": null,
+      "worst": null,
+      "sample_ok": false
+    }
+  },
+  "green_stars3": {
+    "n": 0,
+    "win_rate": null,
+    "mean_return": null,
+    "mean_excess": null,
+    "worst": null,
+    "sample_ok": false
+  },
+  "compare": {
+    "stars3_minus_stars1": null,
+    "tighten_layer1": null,
+    "note": "綠燈 ⭐⭐⭐ 需樣本足夠才與 ⭐／輪動單引擎比較；不足則不收緊第一層規則、不加來源"
+  },
+  "disclaimer": "僅供自我驗證，不構成投資建議。樣本未滿 30 不下結論。"
+}

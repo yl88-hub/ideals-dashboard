@@ -1,6 +1,7 @@
 // 台股每日戰情總看板 - 前端互動邏輯
 let currentData = null;
 let currentSearch = '';
+let currentHitrate = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadData();
@@ -16,10 +17,41 @@ async function loadData() {
     renderAll(currentData);
   } catch (err) {
     console.warn('無法從 data/latest.json 載入，使用預設資料渲染：', err);
-    // 預設示範資料
     currentData = getFallbackData();
     renderAll(currentData);
   }
+  try {
+    const hr = await fetch('data/confluence-hitrate.json', { cache: 'no-store' });
+    if (hr.ok) {
+      currentHitrate = await hr.json();
+      renderHitrate(currentHitrate);
+    } else {
+      renderHitrate(null);
+    }
+  } catch (err) {
+    console.warn('無法載入 confluence-hitrate.json', err);
+    renderHitrate(null);
+  }
+}
+
+function renderHitrate(hr) {
+  const bar = document.getElementById('hitrateBar');
+  const headline = document.getElementById('hitrateHeadline');
+  const meta = document.getElementById('hitrateMeta');
+  if (!headline) return;
+  if (!hr) {
+    headline.textContent = '尚無回算檔（樣本不足，不下結論）';
+    if (meta) meta.textContent = '隔日開盤進／第 5 日收盤出／扣 0.6%；n<30 不下結論';
+    return;
+  }
+  headline.textContent = hr.headline || '樣本不足，不下結論';
+  headline.className = `text-sm font-semibold mt-0.5 ${hr.sample_ok ? 'text-emerald-300' : 'text-amber-300'}`;
+  const n3 = (hr.stars3 && hr.stars3.n) || 0;
+  const nDone = hr.n_completed != null ? hr.n_completed : '—';
+  if (meta) {
+    meta.textContent = `完成 ${nDone} 筆｜⭐⭐⭐ n=${n3}｜門檻 ${hr.min_sample || 30}`;
+  }
+  if (bar) bar.classList.remove('hidden');
 }
 
 function hasMetric(v) {
@@ -138,6 +170,7 @@ function renderAll(data) {
 
   // 3. Tab 2: Rotation
   renderRotation(data.hot_sectors || []);
+  renderThemeSectors(data.theme_sectors || []);
 
   // 4. Tab 3: Momentum
   renderMomentum(data.momentum_top || []);
@@ -322,6 +355,40 @@ function renderRotation(sectors) {
   }).join('');
 }
 
+function renderThemeSectors(sectors) {
+  const section = document.getElementById('themeSectorsSection');
+  const tbody = document.getElementById('themeTableBody');
+  if (!section || !tbody) return;
+  const rows = (sectors || []).filter(s => matchSearch(s.name, s.stage));
+  if (!rows.length) {
+    section.classList.add('hidden');
+    tbody.innerHTML = '';
+    return;
+  }
+  section.classList.remove('hidden');
+  const stageColors = {
+    '初升': 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+    '主升': 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
+    '過熱': 'bg-rose-500/10 text-rose-400 border border-rose-500/20',
+    '退潮': 'bg-slate-500/10 text-slate-400 border border-slate-500/20',
+  };
+  tbody.innerHTML = rows.map(s => {
+    const badge = stageColors[s.stage] || 'bg-slate-500/10 text-slate-400';
+    const d5 = sectorShareD5(s);
+    const rel = sectorRelRs5(s);
+    return `
+      <tr class="hover:bg-darkCardHover/50 transition">
+        <td class="px-4 py-3 font-bold text-white">${escapeHtml(s.name)}</td>
+        <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[11px] font-semibold ${badge}">${escapeHtml(s.stage || '—')}</span></td>
+        <td class="px-4 py-3 font-mono font-semibold text-slate-200">${(Number(s.share || 0) * 100).toFixed(1)}%</td>
+        <td class="px-4 py-3 font-mono ${d5 == null ? 'text-slate-500' : d5 >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${d5 == null ? '—' : fmtSignedPct(d5, 1)}</td>
+        <td class="px-4 py-3 font-mono ${rel == null ? 'text-slate-500' : rel >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${rel == null ? '—' : fmtSignedPct(rel, 1)}</td>
+        <td class="px-4 py-3 font-mono text-slate-300 font-semibold">${Number(s.score || 0).toFixed(0)}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
 function renderMomentum(momentumList) {
   const tbody = document.getElementById('momentumTableBody');
   const filtered = momentumList.filter(m => matchSearch(m.code, m.name, m.signals));
@@ -411,6 +478,7 @@ function handleSearch(val) {
     renderPlanWatch(lists.watch);
     renderPlanExits(currentData.exit_warnings || []);
     renderRotation(currentData.hot_sectors || []);
+    renderThemeSectors(currentData.theme_sectors || []);
     renderMomentum(currentData.momentum_top || []);
     renderNews(currentData.news_stocks || []);
     renderSwing(currentData.swing_picks || []);
@@ -513,6 +581,9 @@ function getFallbackData() {
       { name: "半導體", stage: "主升", share: 0.185, share_z: 1.4, share_d5: 0.012, rs5: 0.032, score: 88.0, heat_days: 4 },
       { name: "電腦及週邊", stage: "初升", share: 0.124, share_z: 0.8, share_d5: 0.008, rs5: 0.021, score: 76.0, heat_days: 2 },
       { name: "電機機械", stage: "初升", share: 0.095, share_z: 0.5, share_d5: 0.006, rs5: 0.018, score: 70.0, heat_days: 1 }
+    ],
+    theme_sectors: [
+      { name: "CPO / 矽光子", stage: "初升", share: 0.08, share_z: 1.1, share_d5: 0.015, rs5: 0.04, score: 90.0, heat_days: 3 }
     ],
     momentum_top: [
       { code: "3450", name: "聯鈞", close: 240.0, ret_5d: 0.082, vol_ratio: 2.1, score: 78.0, signals: "RSI強,均線多頭,量能激增" },
