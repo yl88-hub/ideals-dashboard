@@ -2,9 +2,11 @@
 let currentData = null;
 let currentSearch = '';
 let currentHitrate = null;
+let layer3Cfg = { live: false, pages_url: 'https://yl88-hub.github.io/ideals-dashboard/' };
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadData();
+  await loadLayer3();
   const tab = new URLSearchParams(location.search).get('tab');
   if (tab) switchTab(tab);
 });
@@ -32,6 +34,80 @@ async function loadData() {
     console.warn('無法載入 confluence-hitrate.json', err);
     renderHitrate(null);
   }
+}
+
+async function loadLayer3() {
+  try {
+    const res = await fetch('data/layer3.json', { cache: 'no-store' });
+    if (res.ok) layer3Cfg = Object.assign(layer3Cfg, await res.json());
+  } catch (err) {
+    console.warn('無法載入 layer3.json', err);
+  }
+  applyLayer3Chrome(currentData);
+}
+
+function layer3Query() {
+  return (new URLSearchParams(location.search).get('layer3') || '').toLowerCase();
+}
+
+function layer3On() {
+  const q = layer3Query();
+  return layer3Cfg.live === true || q === '1' || q === 'preview' || q === 'true';
+}
+
+function applyLayer3Chrome(data) {
+  const strip = document.getElementById('layer3Strip');
+  const badge = document.getElementById('layer3Badge');
+  const sub = document.getElementById('headerSubtitle');
+  const on = layer3On();
+  if (strip) strip.classList.toggle('hidden', !on);
+  if (badge) {
+    badge.textContent = layer3Cfg.live ? '已接上 · 日常入口' : '未接上 · ?layer3=1 預覽';
+  }
+  if (sub && on) {
+    sub.textContent = layer3Cfg.live
+      ? '日常入口：戰情看板＋計劃書推播（上游是引擎）'
+      : '第三層預覽：看燈號 → 看候選 → 看停損（尚未接上）';
+  }
+  renderLayer3Steps(data || currentData);
+}
+
+function renderLayer3Steps(data) {
+  if (!data) return;
+  const lightEl = document.getElementById('layer3LightText');
+  const namesEl = document.getElementById('layer3NamesText');
+  const stopEl = document.getElementById('layer3StopText');
+  const market = data.market || {};
+  const lightMap = { green: '🟢 綠燈', yellow: '🟡 黃燈', red: '🔴 紅燈' };
+  if (lightEl) lightEl.textContent = lightMap[market.light] || (market.light || '—');
+  const lists = planLists(data);
+  const rows = (lists.buy && lists.buy.length) ? lists.buy : (lists.watch || []);
+  if (namesEl) {
+    if (!rows.length) namesEl.textContent = market.light === 'red' ? '紅燈不開新倉' : '今日無名單';
+    else namesEl.textContent = rows.slice(0, 3).map(c => `${c.code} ${c.name || ''}`.trim()).join('、');
+  }
+  if (stopEl) {
+    const exits = data.exit_warnings || [];
+    const alert = exits.find(e => (e.status || '').includes('退場') || (e.warnings && e.warnings.length));
+    const src = alert || rows[0] || exits[0];
+    if (!src) stopEl.textContent = '無持股停損列';
+    else {
+      const px = src.stop_price != null ? Number(src.stop_price).toFixed(1) : '—';
+      stopEl.textContent = `${src.code || ''} ${src.name || ''} 停 ${px}`.trim();
+    }
+  }
+}
+
+function layer3Go(which) {
+  if (which === 'light') {
+    document.getElementById('marketOverviewCard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  switchTab('plan');
+  const target = which === 'stop'
+    ? document.getElementById('planExitSection')
+    : document.getElementById('tab-plan');
+  target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderHitrate(hr) {
@@ -180,6 +256,7 @@ function renderAll(data) {
 
   // 6. Tab 5: Swing
   renderSwing(data.swing_picks || []);
+  renderLayer3Steps(data);
 }
 
 function planLists(data) {

@@ -1,0 +1,14 @@
+{
+  "live": false,
+  "pages_url": "https://yl88-hub.github.io/ideals-dashboard/",
+  "daily_entry": "pages+ntfy",
+  "streamlit_role": "holdings/intraday/params",
+  "ideas_status_connected": false,
+  "walk_forward_connected": false,
+  "never": [
+    "intraday_entry",
+    "auto_order",
+    "claude_writes_stars"
+  ],
+  "note": "第三層預作完成。live=false：不改 IDEAS 狀態、Streamlit 預設不顯示降級橫幅、walk-forward 不寫回規則。預覽看板加 ?layer3=1；Streamlit 設 LAYER3_PREVIEW=1。"
+}
