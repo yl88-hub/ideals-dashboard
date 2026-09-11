@@ -11,17 +11,17 @@
   "cost_round": 0.006,
   "horizon": 5,
   "n_signals": 21,
-  "n_completed": 6,
-  "n_pending": 15,
+  "n_completed": 9,
+  "n_pending": 12,
   "n_no_price": 0,
   "sample_ok": false,
-  "headline": "樣本不足（⭐⭐⭐ 已完成 0／需 30），不下結論",
+  "headline": "樣本不足（⭐⭐⭐ 已完成 2／需 30），不下結論",
   "stars3": {
-    "n": 0,
-    "win_rate": null,
-    "mean_return": null,
-    "mean_excess": null,
-    "worst": null,
+    "n": 2,
+    "win_rate": 0.0,
+    "mean_return": -0.071268,
+    "mean_excess": -0.04715,
+    "worst": -0.104537,
     "sample_ok": false
   },
   "by_stars": {
@@ -34,19 +34,19 @@
       "sample_ok": false
     },
     "2": {
-      "n": 6,
+      "n": 7,
       "win_rate": 0.0,
-      "mean_return": -0.041816,
-      "mean_excess": -0.062201,
+      "mean_return": -0.03808,
+      "mean_excess": -0.052107,
       "worst": -0.065341,
       "sample_ok": false
     },
     "3": {
-      "n": 0,
-      "win_rate": null,
-      "mean_return": null,
-      "mean_excess": null,
-      "worst": null,
+      "n": 2,
+      "win_rate": 0.0,
+      "mean_return": -0.071268,
+      "mean_excess": -0.04715,
+      "worst": -0.104537,
       "sample_ok": false
     }
   },
@@ -60,11 +60,11 @@
       "sample_ok": false
     },
     "yellow": {
-      "n": 0,
-      "win_rate": null,
-      "mean_return": null,
-      "mean_excess": null,
-      "worst": null,
+      "n": 3,
+      "win_rate": 0.0,
+      "mean_return": -0.052733,
+      "mean_excess": -0.028615,
+      "worst": -0.104537,
       "sample_ok": false
     },
     "red": {
@@ -78,11 +78,11 @@
   },
   "by_rightside": {
     "yes": {
-      "n": 0,
-      "win_rate": null,
-      "mean_return": null,
-      "mean_excess": null,
-      "worst": null,
+      "n": 3,
+      "win_rate": 0.0,
+      "mean_return": -0.052733,
+      "mean_excess": -0.028615,
+      "worst": -0.104537,
       "sample_ok": false
     },
     "no": {
