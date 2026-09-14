@@ -11,16 +11,16 @@
   "cost_round": 0.006,
   "horizon": 5,
   "n_signals": 21,
-  "n_completed": 9,
-  "n_pending": 12,
+  "n_completed": 15,
+  "n_pending": 6,
   "n_no_price": 0,
   "sample_ok": false,
-  "headline": "樣本不足（⭐⭐⭐ 已完成 2／需 30），不下結論",
+  "headline": "樣本不足（⭐⭐⭐ 已完成 4／需 30），不下結論",
   "stars3": {
-    "n": 2,
+    "n": 4,
     "win_rate": 0.0,
-    "mean_return": -0.071268,
-    "mean_excess": -0.04715,
+    "mean_return": -0.039502,
+    "mean_excess": -0.014247,
     "worst": -0.104537,
     "sample_ok": false
   },
@@ -34,29 +34,29 @@
       "sample_ok": false
     },
     "2": {
-      "n": 7,
-      "win_rate": 0.0,
-      "mean_return": -0.03808,
-      "mean_excess": -0.052107,
-      "worst": -0.065341,
+      "n": 11,
+      "win_rate": 0.182,
+      "mean_return": -0.029963,
+      "mean_excess": -0.029292,
+      "worst": -0.079846,
       "sample_ok": false
     },
     "3": {
-      "n": 2,
+      "n": 4,
       "win_rate": 0.0,
-      "mean_return": -0.071268,
-      "mean_excess": -0.04715,
+      "mean_return": -0.039502,
+      "mean_excess": -0.014247,
       "worst": -0.104537,
       "sample_ok": false
     }
   },
   "by_light": {
     "green": {
-      "n": 6,
-      "win_rate": 0.0,
-      "mean_return": -0.041816,
-      "mean_excess": -0.062201,
-      "worst": -0.065341,
+      "n": 12,
+      "win_rate": 0.167,
+      "mean_return": -0.02745,
+      "mean_excess": -0.024446,
+      "worst": -0.079846,
       "sample_ok": false
     },
     "yellow": {
@@ -78,10 +78,10 @@
   },
   "by_rightside": {
     "yes": {
-      "n": 3,
-      "win_rate": 0.0,
-      "mean_return": -0.052733,
-      "mean_excess": -0.028615,
+      "n": 9,
+      "win_rate": 0.222,
+      "mean_return": -0.0263,
+      "mean_excess": -0.000666,
       "worst": -0.104537,
       "sample_ok": false
     },
@@ -95,11 +95,11 @@
     }
   },
   "green_stars3": {
-    "n": 0,
-    "win_rate": null,
-    "mean_return": null,
-    "mean_excess": null,
-    "worst": null,
+    "n": 2,
+    "win_rate": 0.0,
+    "mean_return": -0.007736,
+    "mean_excess": 0.018657,
+    "worst": -0.009472,
     "sample_ok": false
   },
   "compare": {
