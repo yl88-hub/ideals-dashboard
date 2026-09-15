@@ -646,96 +646,212 @@
   ],
   "news_stocks": [
     {
-      "code": "2412",
-      "name": "中華電",
-      "sector": "電信",
+      "code": "5274",
+      "name": "信驊",
+      "sector": "IC設計",
       "sentiment": "偏多",
       "events": [
-        "法人買賣超",
-        "營收",
+        "擴產投資",
+        "目標價/評等",
         "財報"
       ],
       "sources": [
-        "MOPS-上市重大訊息",
-        "TWSE-三大法人",
-        "經濟日報-即時",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
-      ],
-      "sources_count": 5
-    },
-    {
-      "code": "2357",
-      "name": "華碩",
-      "sector": "PC/NB",
-      "sentiment": "中性",
-      "events": [],
-      "sources": [
-        "MOPS-上市重大訊息",
         "中央社-財經",
         "經濟日報-即時",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
-      ],
-      "sources_count": 5
-    },
-    {
-      "code": "4904",
-      "name": "遠傳",
-      "sector": "電信",
-      "sentiment": "偏多",
-      "events": [],
-      "sources": [
-        "MOPS-上市重大訊息",
-        "經濟日報-即時",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
+        "自由財經",
+        "鉅亨網-台股"
       ],
       "sources_count": 4
     },
     {
-      "code": "3231",
-      "name": "緯創",
-      "sector": "AI伺服器",
+      "code": "6488",
+      "name": "環球晶",
+      "sector": "半導體",
+      "sentiment": "中性",
+      "events": [
+        "訂單"
+      ],
+      "sources": [
+        "中央社-財經",
+        "經濟日報-即時",
+        "自由財經",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "2886",
+      "name": "兆豐金",
+      "sector": "金融",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超",
+        "財報"
+      ],
+      "sources": [
+        "TWSE-三大法人",
+        "自由財經",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "1303",
+      "name": "南亞",
+      "sector": "塑化",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超"
+      ],
+      "sources": [
+        "TWSE-三大法人",
+        "自由財經",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2344",
+      "name": "華邦電",
+      "sector": "記憶體",
+      "sentiment": "中性",
+      "events": [
+        "法人買賣超",
+        "營收"
+      ],
+      "sources": [
+        "MOPS-上市月營收",
+        "TWSE-三大法人",
+        "經濟日報-即時"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2330",
+      "name": "台積電",
+      "sector": "半導體",
       "sentiment": "偏空",
       "events": [
         "法人買賣超"
       ],
       "sources": [
-        "MOPS-上市重大訊息",
-        "TWSE-三大法人",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
+        "MoneyDJ-即時",
+        "自由財經",
+        "鉅亨網-台股"
       ],
-      "sources_count": 4
+      "sources_count": 3
     },
     {
-      "code": "3711",
-      "name": "日月光投控",
-      "sector": "半導體封測",
+      "code": "2408",
+      "name": "南亞科",
+      "sector": "記憶體",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超",
+        "營收",
+        "目標價/評等",
+        "財報"
+      ],
+      "sources": [
+        "MOPS-上市月營收",
+        "TWSE-三大法人",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2324",
+      "name": "仁寶",
+      "sector": "PC/NB",
       "sentiment": "中性",
       "events": [],
       "sources": [
-        "MOPS-上市重大訊息",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
+        "經濟日報-即時",
+        "自由財經",
+        "鉅亨網-台股"
       ],
       "sources_count": 3
     },
     {
-      "code": "1314",
-      "name": "中石化",
-      "sector": "塑膠",
+      "code": "2610",
+      "name": "華航",
+      "sector": "航空",
       "sentiment": "中性",
+      "events": [],
+      "sources": [
+        "經濟日報-即時",
+        "自由財經"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2882",
+      "name": "國泰金",
+      "sector": "金融",
+      "sentiment": "偏多",
       "events": [
-        "法說會"
+        "總經/政策",
+        "財報"
       ],
       "sources": [
-        "MOPS-上市重大訊息",
-        "中央社-財經",
-        "經濟日報-即時"
+        "自由財經",
+        "鉅亨網-台股"
       ],
-      "sources_count": 3
+      "sources_count": 2
+    },
+    {
+      "code": "2891",
+      "name": "中信金",
+      "sector": "金融",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超"
+      ],
+      "sources": [
+        "TWSE-三大法人",
+        "自由財經"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2454",
+      "name": "聯發科",
+      "sector": "IC設計",
+      "sentiment": "中性",
+      "events": [],
+      "sources": [
+        "經濟日報-即時",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2451",
+      "name": "創見",
+      "sector": "半導體",
+      "sentiment": "偏多",
+      "events": [
+        "營收"
+      ],
+      "sources": [
+        "MOPS-上市月營收",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "8045",
+      "name": "達運光電",
+      "sector": "通信網路",
+      "sentiment": "偏多",
+      "events": [
+        "訂單"
+      ],
+      "sources": [
+        "自由財經",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 2
     },
     {
       "code": "2409",
@@ -747,87 +863,25 @@
       ],
       "sources": [
         "TWSE-三大法人",
-        "中央社-財經",
-        "鉅亨網-台股"
+        "經濟日報-即時"
       ],
-      "sources_count": 3
+      "sources_count": 2
     },
     {
-      "code": "1303",
-      "name": "南亞",
-      "sector": "塑化",
-      "sentiment": "偏空",
+      "code": "2368",
+      "name": "金像電",
+      "sector": "PCB/載板",
+      "sentiment": "中性",
       "events": [
         "法人買賣超",
-        "法說會"
-      ],
-      "sources": [
-        "MOPS-上市重大訊息",
-        "自由財經",
-        "鉅亨網-台股"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "2883",
-      "name": "凱基金",
-      "sector": "金融保險",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超",
-        "營收",
-        "社群熱議"
-      ],
-      "sources": [
-        "PTT-Stock板",
-        "TWSE-三大法人",
-        "自由財經"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "2027",
-      "name": "大成鋼",
-      "sector": "鋼鐵",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超",
-        "訂單"
+        "目標價/評等",
+        "財報"
       ],
       "sources": [
         "TWSE-三大法人",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
+        "鉅亨網-台股"
       ],
-      "sources_count": 3
-    },
-    {
-      "code": "1472",
-      "name": "三洋實業",
-      "sector": "建材營造",
-      "sentiment": "中性",
-      "events": [
-        "訂單"
-      ],
-      "sources": [
-        "自由財經",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "3563",
-      "name": "牧德",
-      "sector": "光電",
-      "sentiment": "中性",
-      "events": [],
-      "sources": [
-        "經濟日報-即時",
-        "鉅亨網-台股",
-        "鉅亨網-頭條"
-      ],
-      "sources_count": 3
+      "sources_count": 2
     },
     {
       "code": "5007",
@@ -836,114 +890,46 @@
       "sentiment": "中性",
       "events": [],
       "sources": [
-        "鉅亨網-台股",
+        "MoneyDJ-即時",
+        "經濟日報-即時"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "1603",
+      "name": "華電",
+      "sector": "電器電纜",
+      "sentiment": "偏空",
+      "events": [],
+      "sources": [
         "鉅亨網-美股國際",
         "鉅亨網-頭條"
       ],
-      "sources_count": 3
+      "sources_count": 2
     },
     {
-      "code": "3032",
-      "name": "偉訓",
-      "sector": "電子零組件",
-      "sentiment": "中性",
-      "events": [
-        "營收"
-      ],
+      "code": "1604",
+      "name": "聲寶",
+      "sector": "電器電纜",
+      "sentiment": "偏空",
+      "events": [],
       "sources": [
-        "MOPS-上市重大訊息",
-        "鉅亨網-台股",
+        "鉅亨網-美股國際",
         "鉅亨網-頭條"
       ],
-      "sources_count": 3
+      "sources_count": 2
     },
     {
-      "code": "2330",
-      "name": "台積電",
-      "sector": "半導體",
+      "code": "8996",
+      "name": "高力",
+      "sector": "電機機械",
       "sentiment": "中性",
       "events": [
-        "擴產投資",
-        "營收"
+        "處置/警示"
       ],
       "sources": [
-        "MOPS-上市重大訊息",
         "鉅亨網-台股",
-        "鉅亨網-美股國際"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "1232",
-      "name": "大統益",
-      "sector": "食品",
-      "sentiment": "中性",
-      "events": [
-        "法說會"
-      ],
-      "sources": [
-        "MOPS-上市重大訊息",
-        "中央社-財經",
-        "經濟日報-即時"
-      ],
-      "sources_count": 3
-    },
-    {
-      "code": "2880",
-      "name": "華南金",
-      "sector": "金融保險",
-      "sentiment": "偏多",
-      "events": [
-        "營收",
-        "財報"
-      ],
-      "sources": [
-        "MOPS-上市重大訊息",
-        "鉅亨網-台股"
-      ],
-      "sources_count": 2
-    },
-    {
-      "code": "2885",
-      "name": "元大金",
-      "sector": "金融",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超",
-        "營收"
-      ],
-      "sources": [
-        "MOPS-上市重大訊息",
-        "TWSE-三大法人"
-      ],
-      "sources_count": 2
-    },
-    {
-      "code": "2812",
-      "name": "台中銀",
-      "sector": "金融保險",
-      "sentiment": "偏多",
-      "events": [
-        "法人買賣超",
-        "財報"
-      ],
-      "sources": [
-        "TWSE-三大法人",
-        "經濟日報-即時"
-      ],
-      "sources_count": 2
-    },
-    {
-      "code": "2308",
-      "name": "台達電",
-      "sector": "電源/散熱",
-      "sentiment": "偏空",
-      "events": [
-        "法人買賣超"
-      ],
-      "sources": [
-        "TWSE-三大法人",
-        "自由財經"
+        "鉅亨網-頭條"
       ],
       "sources_count": 2
     }
