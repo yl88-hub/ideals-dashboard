@@ -1,5 +1,5 @@
 {
-  "asof": "2026-09-23",
+  "asof": "2026-09-24",
   "plan_dates": [
     "2026-09-01",
     "2026-09-04",
@@ -10,13 +10,14 @@
     "2026-09-18",
     "2026-09-21",
     "2026-09-22",
-    "2026-09-23"
+    "2026-09-23",
+    "2026-09-24"
   ],
   "min_sample": 30,
   "cost_round": 0.006,
   "horizon": 5,
-  "n_signals": 72,
-  "n_completed": 21,
+  "n_signals": 75,
+  "n_completed": 24,
   "n_pending": 51,
   "n_no_price": 0,
   "sample_ok": false,
@@ -39,10 +40,10 @@
       "sample_ok": false
     },
     "2": {
-      "n": 15,
-      "win_rate": 0.133,
-      "mean_return": -0.034392,
-      "mean_excess": -0.026075,
+      "n": 18,
+      "win_rate": 0.167,
+      "mean_return": -0.030245,
+      "mean_excess": -0.026295,
       "worst": -0.108703,
       "sample_ok": false
     },
@@ -65,10 +66,10 @@
       "sample_ok": false
     },
     "yellow": {
-      "n": 9,
-      "win_rate": 0.0,
-      "mean_return": -0.054627,
-      "mean_excess": -0.027025,
+      "n": 12,
+      "win_rate": 0.083,
+      "mean_return": -0.043347,
+      "mean_excess": -0.027117,
       "worst": -0.126,
       "sample_ok": false
     },
@@ -83,18 +84,18 @@
   },
   "by_rightside": {
     "yes": {
-      "n": 15,
-      "win_rate": 0.133,
-      "mean_return": -0.03801,
-      "mean_excess": -0.010891,
+      "n": 17,
+      "win_rate": 0.176,
+      "mean_return": -0.032129,
+      "mean_excess": -0.010306,
       "worst": -0.126,
       "sample_ok": false
     },
     "no": {
-      "n": 6,
+      "n": 7,
       "win_rate": 0.0,
-      "mean_return": -0.041816,
-      "mean_excess": -0.062201,
+      "mean_return": -0.043338,
+      "mean_excess": -0.063365,
       "worst": -0.065341,
       "sample_ok": false
     }
