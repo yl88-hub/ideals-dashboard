@@ -188,8 +188,8 @@ function renderAll(data) {
   const m = data.market || {};
   const lightColors = {
     green: { text: '🟢 綠燈 多頭許可', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', stat: 'text-emerald-400' },
-    yellow: { text: '🟡 黃燈 警戒減碼', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', stat: 'text-amber-400' },
-    red: { text: '🔴 紅燈 防禦空手', badge: 'bg-rose-500/10 text-rose-400 border-rose-500/20', stat: 'text-rose-400' }
+    yellow: { text: '🟡 黃燈 減半試單', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', stat: 'text-amber-400' },
+    red: { text: '🔴 紅燈 暫停新倉', badge: 'bg-rose-500/10 text-rose-400 border-rose-500/20', stat: 'text-rose-400' }
   };
   const cfg = lightColors[m.light] || lightColors.green;
   
@@ -200,6 +200,12 @@ function renderAll(data) {
   document.getElementById('statLightText').textContent = cfg.text;
   document.getElementById('statLightText').className = `text-base font-bold mt-1 ${cfg.stat}`;
   document.getElementById('statAdvice').textContent = m.advice || '正常操作';
+  const indexEl = document.getElementById('statIndexAdvice');
+  if (indexEl) {
+    indexEl.textContent = m.index_advice ? `大盤部位（0050 類）：${m.index_advice}` : '';
+    indexEl.title = indexEl.textContent;
+    indexEl.classList.toggle('hidden', !m.index_advice);
+  }
   document.getElementById('statTaiex').textContent = Number(m.taiex || 0).toLocaleString();
   const extrasMissing = marketExtrasMissing(m);
   document.getElementById('statTaiex5d').textContent =
@@ -266,8 +272,8 @@ function planLists(data) {
   const light = (data.market || {}).light;
   const buy = data.candidates || [];
   const watch = data.watchlist || [];
-  // 舊黃燈 JSON 沒有 watchlist：把 candidates 當觀察名單
-  if (watch.length === 0 && buy.length && light === 'yellow') {
+  // 舊黃燈 JSON（沒有 watchlist 欄位）當時全列觀察；新版黃燈可有買進候選
+  if (!('watchlist' in data) && buy.length && light === 'yellow') {
     return { buy: [], watch: buy };
   }
   return { buy, watch };
@@ -281,8 +287,8 @@ function renderPlanListHeadings(market) {
     buyH.textContent = '新倉：紅燈禁止';
     watchH.textContent = '觀察名單';
   } else if (market.light === 'yellow') {
-    buyH.textContent = '黃燈不開新倉';
-    watchH.textContent = '黃燈觀察名單（不是買進指令）';
+    buyH.textContent = '黃燈買進候選（最多 3 檔、部位減半）';
+    watchH.textContent = '觀察名單（動能掃描或缺右側／族群）';
   } else {
     buyH.textContent = '明日買進候選（須右側＋族群）';
     watchH.textContent = '觀察名單（動能掃描或缺右側／族群）';
@@ -294,7 +300,7 @@ function renderPlanWatch(watch) {
   const container = document.getElementById('planWatchContainer');
   if (!container) return;
   if (section) {
-    section.classList.toggle('hidden', !watch.length && currentData?.market?.light === 'green');
+    section.classList.toggle('hidden', !watch.length && currentData?.market?.light !== 'red');
   }
   renderPlanCandidates(watch, 'planWatchContainer', currentData?.market || {});
 }
@@ -307,8 +313,8 @@ function renderPlanCandidates(candidates, containerId, market) {
 
   if (!filtered.length) {
     let empty = '今日無符合條件之標的';
-    if (market.light === 'red' && isBuyBox) empty = '🔴 紅燈防禦日：暫停開立新多單';
-    else if (market.light === 'yellow' && isBuyBox) empty = '🟡 黃燈：買進欄為空，請看下方觀察名單';
+    if (market.light === 'red' && isBuyBox) empty = '🔴 紅燈：暫停開立新多單（持股照停損，不因燈號出場）';
+    else if (market.light === 'yellow' && isBuyBox) empty = '🟡 黃燈：今日無符合右側＋族群的買進候選';
     else if (isBuyBox) empty = '今日無符合右側＋族群的買進候選';
     container.innerHTML = `
       <div class="col-span-full py-8 text-center text-slate-400 text-xs bg-darkBg/40 rounded-xl border border-darkBorder/40">
@@ -584,7 +590,9 @@ function copyPlanToClipboard() {
     ? `，MA20 ${hasIndexMa(m.ma20) ? Number(m.ma20).toLocaleString() : '—'} / MA60 ${hasIndexMa(m.ma60) ? Number(m.ma60).toLocaleString() : '—'}`
     : '';
   text += `大盤環境：${m.light?.toUpperCase() || 'GREEN'}（加權 ${Number(m.taiex || 0).toLocaleString()}${r5txt}${maTxt}）\n`;
-  text += `方針指引：${m.advice || '正常操作'}\n\n`;
+  text += `方針指引：${m.advice || '正常操作'}\n`;
+  if (m.index_advice) text += `大盤部位（0050 類）：${m.index_advice}\n`;
+  text += '\n';
   
   const lists = planLists(currentData);
   if (lists.buy.length) {
