@@ -288,10 +288,10 @@ function renderPlanListHeadings(market) {
     watchH.textContent = '觀察名單';
   } else if (market.light === 'yellow') {
     buyH.textContent = '黃燈買進候選（最多 3 檔、部位減半）';
-    watchH.textContent = '觀察名單（動能掃描或缺右側／族群）';
+    watchH.textContent = '觀察名單（超出檔數上限的其他右側訊號）';
   } else {
-    buyH.textContent = '明日買進候選（須右側＋族群）';
-    watchH.textContent = '觀察名單（動能掃描或缺右側／族群）';
+    buyH.textContent = '明日買進候選（右側技術，依波段分數排序）';
+    watchH.textContent = '觀察名單（超出檔數上限的其他右側訊號）';
   }
 }
 
@@ -314,8 +314,8 @@ function renderPlanCandidates(candidates, containerId, market) {
   if (!filtered.length) {
     let empty = '今日無符合條件之標的';
     if (market.light === 'red' && isBuyBox) empty = '🔴 紅燈：暫停開立新多單（持股照停損，不因燈號出場）';
-    else if (market.light === 'yellow' && isBuyBox) empty = '🟡 黃燈：今日無符合右側＋族群的買進候選';
-    else if (isBuyBox) empty = '今日無符合右側＋族群的買進候選';
+    else if (market.light === 'yellow' && isBuyBox) empty = '🟡 黃燈：今日無右側技術買進候選';
+    else if (isBuyBox) empty = '今日無右側技術買進候選';
     container.innerHTML = `
       <div class="col-span-full py-8 text-center text-slate-400 text-xs bg-darkBg/40 rounded-xl border border-darkBorder/40">
         ${empty}
@@ -361,7 +361,7 @@ function renderPlanCandidates(candidates, containerId, market) {
           </div>
         </div>
 
-        <!-- 核心共振邏輯 -->
+        <!-- 理由（族群／動能／消息只當註解） -->
         <div class="text-[11px] text-slate-300 space-y-1">
           ${(c.reasons || []).map(r => `<div class="flex items-start space-x-1.5"><span class="text-indigo-400">•</span><span class="leading-tight">${escapeHtml(r)}</span></div>`).join('')}
         </div>
