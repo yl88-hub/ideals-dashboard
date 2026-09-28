@@ -117,15 +117,18 @@ function renderHitrate(hr) {
   if (!headline) return;
   if (!hr) {
     headline.textContent = '尚無回算檔（樣本不足，不下結論）';
-    if (meta) meta.textContent = '隔日開盤進／第 5 日收盤出／扣 0.6%；n<30 不下結論';
+    if (meta) meta.textContent = '隔日開盤進／第 5 日收盤出／扣 0.6%；未滿 30 筆且 20 個訊號日不下結論';
     return;
   }
   headline.textContent = hr.headline || '樣本不足，不下結論';
   headline.className = `text-sm font-semibold mt-0.5 ${hr.sample_ok ? 'text-emerald-300' : 'text-amber-300'}`;
   const n3 = (hr.stars3 && hr.stars3.n) || 0;
+  const d3 = (hr.stars3 && hr.stars3.n_days) || 0;
   const nDone = hr.n_completed != null ? hr.n_completed : '—';
+  const edge = hr.same_day && hr.same_day['3'] && hr.same_day['3'].mean_edge;
+  const edgeText = hasMetric(edge) ? `｜⭐⭐⭐ 同日比全名單 ${edge >= 0 ? '+' : ''}${(edge * 100).toFixed(1)}%` : '';
   if (meta) {
-    meta.textContent = `完成 ${nDone} 筆｜⭐⭐⭐ n=${n3}｜門檻 ${hr.min_sample || 30}`;
+    meta.textContent = `完成 ${nDone} 筆｜⭐⭐⭐ n=${n3}（${d3} 日）｜門檻 ${hr.min_sample || 30} 筆／${hr.min_days || 20} 日${edgeText}`;
   }
   if (bar) bar.classList.remove('hidden');
 }
