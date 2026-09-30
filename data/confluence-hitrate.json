@@ -1,5 +1,5 @@
 {
-  "asof": "2026-09-29",
+  "asof": "2026-09-30",
   "plan_dates": [
     "2026-09-01",
     "2026-09-04",
@@ -12,15 +12,16 @@
     "2026-09-22",
     "2026-09-23",
     "2026-09-24",
-    "2026-09-29"
+    "2026-09-29",
+    "2026-09-30"
   ],
   "min_sample": 30,
   "min_days": 20,
   "cost_round": 0.006,
   "horizon": 5,
-  "n_signals": 78,
-  "n_completed": 36,
-  "n_pending": 42,
+  "n_signals": 85,
+  "n_completed": 48,
+  "n_pending": 37,
   "n_no_price": 0,
   "sample_ok": false,
   "star_basis": "rightside_rank",
@@ -65,11 +66,11 @@
   },
   "by_light": {
     "green": {
-      "n": 24,
-      "n_days": 3,
-      "win_rate": 0.292,
-      "mean_return": 0.009812,
-      "mean_excess": 0.012225,
+      "n": 36,
+      "n_days": 4,
+      "win_rate": 0.361,
+      "mean_return": 0.015295,
+      "mean_excess": 0.015927,
       "worst": -0.082404,
       "sample_ok": false
     },
@@ -94,20 +95,20 @@
   },
   "by_rightside": {
     "yes": {
-      "n": 26,
-      "n_days": 6,
-      "win_rate": 0.269,
-      "mean_return": -0.001425,
-      "mean_excess": 0.013475,
+      "n": 32,
+      "n_days": 7,
+      "win_rate": 0.312,
+      "mean_return": 0.00269,
+      "mean_excess": 0.014248,
       "worst": -0.126,
       "sample_ok": false
     },
     "no": {
-      "n": 10,
-      "n_days": 3,
-      "win_rate": 0.1,
-      "mean_return": -0.024763,
-      "mean_excess": -0.038236,
+      "n": 16,
+      "n_days": 4,
+      "win_rate": 0.25,
+      "mean_return": -0.003478,
+      "mean_excess": -0.012997,
       "worst": -0.082404,
       "sample_ok": false
     }
