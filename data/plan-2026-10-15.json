@@ -491,20 +491,6 @@
     }
   ],
   "watchlist": [],
-  "exit_warnings": [
-    {
-      "code": "2330",
-      "name": "台積電",
-      "sector": "半導體",
-      "price": 2440.0,
-      "stop_price": 2440.0,
-      "warnings": [
-        "跌破ATR移動停損、參考：跌破MA10、參考：爆量收黑"
-      ],
-      "status": "⚠️ 退場警示",
-      "action_advice": "⚠️ 跌破 ATR 移動停損，依紀律出場"
-    }
-  ],
   "ai_briefing": null,
   "momentum_top": [
     {

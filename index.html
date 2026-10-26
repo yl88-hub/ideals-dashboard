@@ -251,24 +251,11 @@
           <span class="text-xs text-slate-400">持股監控與停損紀律</span>
         </div>
 
-        <div id="planExitWarningsContainer" class="overflow-x-auto custom-scrollbar">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-darkBg text-slate-400 uppercase font-semibold">
-              <tr>
-                <th class="px-4 py-3 rounded-l-lg">代號 / 名稱</th>
-                <th class="px-4 py-3">所屬族群</th>
-                <th class="px-4 py-3 font-mono">目前收盤</th>
-                <th class="px-4 py-3 font-mono">建議停損</th>
-                <th class="px-4 py-3">警示訊號</th>
-                <th class="px-4 py-3">狀態</th>
-                <th class="px-4 py-3 rounded-r-lg">操作建議</th>
-              </tr>
-            </thead>
-            <tbody id="exitTableBody" class="divide-y divide-darkBorder text-slate-200">
-              <!-- Dynamically populated exit rows -->
-            </tbody>
-          </table>
-        </div>
+        <p id="planExitPrivateNote" class="text-xs text-slate-300 leading-relaxed">
+          持股退場檢查含個人持股，不在公開看板顯示。每日盤後結果請看 ntfy 推播（私人），
+          或私有 Streamlit「既有持股風控退場檢視」。出場紀律：跌破初始停損或 ATR 移動停損
+          （近 22 日最高收盤 − 3×ATR14）才出場。
+        </p>
       </div>
 
       <!-- 操盤紀律手冊卡片 -->

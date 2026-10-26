@@ -87,10 +87,9 @@ function renderLayer3Steps(data) {
     else namesEl.textContent = rows.slice(0, 3).map(c => `${c.code} ${c.name || ''}`.trim()).join('、');
   }
   if (stopEl) {
-    const exits = data.exit_warnings || [];
-    const alert = exits.find(e => (e.status || '').includes('退場') || (e.warnings && e.warnings.length));
-    const src = alert || rows[0] || exits[0];
-    if (!src) stopEl.textContent = '無持股停損列';
+    // 公開看板不含持股（持股停損只在 ntfy／私有 Streamlit），這裡只顯示名單首檔的停損
+    const src = rows[0];
+    if (!src) stopEl.textContent = '持股停損見 ntfy';
     else {
       const px = src.stop_price != null ? Number(src.stop_price).toFixed(1) : '—';
       stopEl.textContent = `${src.code || ''} ${src.name || ''} 停 ${px}`.trim();
@@ -251,7 +250,6 @@ function renderAll(data) {
   renderPlanListHeadings(data.market || {});
   renderPlanCandidates(lists.buy, 'planCandidatesContainer', data.market || {});
   renderPlanWatch(lists.watch);
-  renderPlanExits(data.exit_warnings || []);
 
   // 3. Tab 2: Rotation
   renderRotation(data.hot_sectors || []);
@@ -366,36 +364,6 @@ function renderPlanCandidates(candidates, containerId, market) {
           ${(c.reasons || []).map(r => `<div class="flex items-start space-x-1.5"><span class="text-indigo-400">•</span><span class="leading-tight">${escapeHtml(r)}</span></div>`).join('')}
         </div>
       </div>
-    `;
-  }).join('');
-}
-
-function renderPlanExits(exits) {
-  const tbody = document.getElementById('exitTableBody');
-  const filtered = exits.filter(e => matchSearch(e.code, e.name, e.sector, e.status, e.action_advice));
-
-  if (!filtered.length) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="7" class="px-4 py-6 text-center text-slate-400">未設定持股或今日持股無異常訊號</td>
-      </tr>
-    `;
-    return;
-  }
-
-  tbody.innerHTML = filtered.map(e => {
-    const isAlert = (e.status || '').includes('退場') || (e.warnings && e.warnings.length);
-    const statusClass = isAlert ? 'text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded font-semibold' : 'text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-medium';
-    return `
-      <tr class="hover:bg-darkCardHover/50 transition">
-        <td class="px-4 py-3 font-semibold text-white font-mono">${e.code} <span class="font-sans font-normal text-slate-300 ml-1">${escapeHtml(e.name)}</span></td>
-        <td class="px-4 py-3 text-slate-400">${escapeHtml(e.sector || '—')}</td>
-        <td class="px-4 py-3 font-mono font-medium">${e.price ? Number(e.price).toFixed(1) : '—'}</td>
-        <td class="px-4 py-3 font-mono font-medium text-rose-400">${e.stop_price ? Number(e.stop_price).toFixed(1) : '—'}</td>
-        <td class="px-4 py-3 text-slate-300">${(e.warnings && e.warnings.length) ? escapeHtml(e.warnings.join('、')) : '無異常'}</td>
-        <td class="px-4 py-3"><span class="${statusClass}">${escapeHtml(e.status)}</span></td>
-        <td class="px-4 py-3 text-slate-300">${escapeHtml(e.action_advice || '維持持有')}</td>
-      </tr>
     `;
   }).join('');
 }
@@ -562,7 +530,6 @@ function handleSearch(val) {
     const lists = planLists(currentData);
     renderPlanCandidates(lists.buy, 'planCandidatesContainer', currentData.market || {});
     renderPlanWatch(lists.watch);
-    renderPlanExits(currentData.exit_warnings || []);
     renderRotation(currentData.hot_sectors || []);
     renderThemeSectors(currentData.theme_sectors || []);
     renderMomentum(currentData.momentum_top || []);
@@ -610,13 +577,6 @@ function copyPlanToClipboard() {
     text += `\n`;
   }
   
-  if (currentData.exit_warnings && currentData.exit_warnings.length) {
-    text += `⚠️ 持股警示：\n`;
-    currentData.exit_warnings.forEach(e => {
-      text += `• ${e.code} ${e.name}: ${e.status} (${e.action_advice})\n`;
-    });
-  }
-
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById('copyPlanBtn');
     const oldText = btn.innerHTML;
@@ -660,10 +620,6 @@ function getFallbackData() {
         code: "2330", name: "台積電", sector: "半導體", price: 980.0, stop_price: 945.0, stars: 2, role: "watch", setup: "動能跟隨",
         suggested_text: "觀察", reasons: ["動能面：成交前50大", "族群面：半導體主升（無右側確認）"]
       }
-    ],
-    exit_warnings: [
-      { code: "2330", name: "台積電", sector: "半導體", price: 980.0, stop_price: 950.0, warnings: [], status: "✓ 續抱觀察", action_advice: "維持持有續抱" },
-      { code: "2603", name: "長榮", sector: "航運", price: 185.0, stop_price: 190.0, warnings: ["跌破MA10", "族群退潮"], status: "⚠️ 退場警示", action_advice: "⚠️ 留意停損並依紀律調節" }
     ],
     hot_sectors: [
       { name: "半導體", stage: "主升", share: 0.185, share_z: 1.4, share_d5: 0.012, rs5: 0.032, score: 88.0, heat_days: 4 },
