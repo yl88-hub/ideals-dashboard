@@ -1,5 +1,5 @@
 {
-  "asof": "2026-10-27",
+  "asof": "2026-10-28",
   "plan_dates": [
     "2026-09-01",
     "2026-09-04",
@@ -34,26 +34,27 @@
     "2026-10-20",
     "2026-10-21",
     "2026-10-22",
-    "2026-10-27"
+    "2026-10-27",
+    "2026-10-28"
   ],
   "min_sample": 30,
   "min_days": 20,
   "cost_round": 0.006,
   "horizon": 5,
-  "n_signals": 161,
-  "n_completed": 160,
-  "n_pending": 1,
+  "n_signals": 170,
+  "n_completed": 161,
+  "n_pending": 9,
   "n_no_price": 0,
   "n_no_bench": 0,
   "sample_ok": false,
   "star_basis": "rightside_rank",
-  "headline": "樣本不足（⭐⭐⭐ 已完成 33 筆／13 個訊號日；需 30 筆且 20 日），不下結論",
+  "headline": "樣本不足（⭐⭐⭐ 已完成 34 筆／14 個訊號日；需 30 筆且 20 日），不下結論",
   "stars3": {
-    "n": 33,
-    "n_days": 13,
-    "win_rate": 0.333,
-    "mean_return": -0.01671,
-    "mean_excess": 0.002793,
+    "n": 34,
+    "n_days": 14,
+    "win_rate": 0.353,
+    "mean_return": -0.004845,
+    "mean_excess": 0.013882,
     "worst": -0.105379,
     "sample_ok": false
   },
@@ -77,11 +78,11 @@
       "sample_ok": false
     },
     "3": {
-      "n": 33,
-      "n_days": 13,
-      "win_rate": 0.333,
-      "mean_return": -0.01671,
-      "mean_excess": 0.002793,
+      "n": 34,
+      "n_days": 14,
+      "win_rate": 0.353,
+      "mean_return": -0.004845,
+      "mean_excess": 0.013882,
       "worst": -0.105379,
       "sample_ok": false
     }
@@ -97,11 +98,11 @@
       "sample_ok": false
     },
     "yellow": {
-      "n": 29,
-      "n_days": 8,
-      "win_rate": 0.379,
-      "mean_return": -0.005835,
-      "mean_excess": -0.00382,
+      "n": 30,
+      "n_days": 9,
+      "win_rate": 0.4,
+      "mean_return": 0.00725,
+      "mean_excess": 0.008967,
       "worst": -0.126,
       "sample_ok": false
     },
@@ -117,11 +118,11 @@
   },
   "by_rightside": {
     "yes": {
-      "n": 132,
-      "n_days": 23,
-      "win_rate": 0.424,
-      "mean_return": 0.005398,
-      "mean_excess": 0.018121,
+      "n": 133,
+      "n_days": 24,
+      "win_rate": 0.429,
+      "mean_return": 0.008265,
+      "mean_excess": 0.02084,
       "worst": -0.126,
       "sample_ok": true
     },
@@ -162,7 +163,7 @@
     }
   },
   "compare": {
-    "stars3_minus_stars1": -0.028003,
+    "stars3_minus_stars1": -0.016914,
     "tighten_layer1": null,
     "note": "⭐⭐⭐＝右側訊號排名前段（2026-09-28 起）；樣本足夠才與 ⭐ 比較，不足則不調整排序規則"
   },
