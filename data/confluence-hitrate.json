@@ -1,5 +1,5 @@
 {
-  "asof": "2026-11-03",
+  "asof": "2026-11-04",
   "plan_dates": [
     "2026-09-01",
     "2026-09-04",
@@ -39,55 +39,56 @@
     "2026-10-29",
     "2026-10-30",
     "2026-11-02",
-    "2026-11-03"
+    "2026-11-03",
+    "2026-11-04"
   ],
   "min_sample": 30,
   "min_days": 20,
   "cost_round": 0.006,
   "horizon": 5,
   "n_signals": 170,
-  "n_completed": 161,
-  "n_pending": 9,
+  "n_completed": 170,
+  "n_pending": 0,
   "n_no_price": 0,
   "n_no_bench": 0,
   "sample_ok": false,
   "star_basis": "rightside_rank",
-  "headline": "樣本不足（⭐⭐⭐ 已完成 34 筆／14 個訊號日；需 30 筆且 20 日），不下結論",
+  "headline": "樣本不足（⭐⭐⭐ 已完成 37 筆／15 個訊號日；需 30 筆且 20 日），不下結論",
   "stars3": {
-    "n": 34,
-    "n_days": 14,
-    "win_rate": 0.353,
-    "mean_return": -0.004845,
-    "mean_excess": 0.013882,
-    "worst": -0.105379,
+    "n": 37,
+    "n_days": 15,
+    "win_rate": 0.324,
+    "mean_return": -0.011635,
+    "mean_excess": 0.012586,
+    "worst": -0.149363,
     "sample_ok": false
   },
   "by_stars": {
     "1": {
-      "n": 22,
-      "n_days": 12,
-      "win_rate": 0.409,
-      "mean_return": 0.011993,
-      "mean_excess": 0.030796,
-      "worst": -0.080178,
+      "n": 25,
+      "n_days": 13,
+      "win_rate": 0.36,
+      "mean_return": -0.006344,
+      "mean_excess": 0.02058,
+      "worst": -0.174992,
       "sample_ok": false
     },
     "2": {
-      "n": 30,
-      "n_days": 13,
-      "win_rate": 0.4,
-      "mean_return": -0.00726,
-      "mean_excess": 0.01213,
+      "n": 33,
+      "n_days": 14,
+      "win_rate": 0.424,
+      "mean_return": -0.007311,
+      "mean_excess": 0.018179,
       "worst": -0.105122,
       "sample_ok": false
     },
     "3": {
-      "n": 34,
-      "n_days": 14,
-      "win_rate": 0.353,
-      "mean_return": -0.004845,
-      "mean_excess": 0.013882,
-      "worst": -0.105379,
+      "n": 37,
+      "n_days": 15,
+      "win_rate": 0.324,
+      "mean_return": -0.011635,
+      "mean_excess": 0.012586,
+      "worst": -0.149363,
       "sample_ok": false
     }
   },
@@ -102,12 +103,12 @@
       "sample_ok": false
     },
     "yellow": {
-      "n": 30,
-      "n_days": 9,
-      "win_rate": 0.4,
-      "mean_return": 0.00725,
-      "mean_excess": 0.008967,
-      "worst": -0.126,
+      "n": 39,
+      "n_days": 10,
+      "win_rate": 0.359,
+      "mean_return": -0.012671,
+      "mean_excess": 0.008607,
+      "worst": -0.174992,
       "sample_ok": false
     },
     "red": {
@@ -122,12 +123,12 @@
   },
   "by_rightside": {
     "yes": {
-      "n": 133,
-      "n_days": 24,
-      "win_rate": 0.429,
-      "mean_return": 0.008265,
-      "mean_excess": 0.02084,
-      "worst": -0.126,
+      "n": 142,
+      "n_days": 25,
+      "win_rate": 0.415,
+      "mean_return": 0.002729,
+      "mean_excess": 0.019989,
+      "worst": -0.174992,
       "sample_ok": true
     },
     "no": {
@@ -151,23 +152,23 @@
   },
   "same_day": {
     "1": {
-      "days": 12,
-      "mean_edge": 0.015698,
-      "positive_days": 0.667
+      "days": 13,
+      "mean_edge": 0.009741,
+      "positive_days": 0.615
     },
     "2": {
-      "days": 13,
-      "mean_edge": 0.002826,
-      "positive_days": 0.538
+      "days": 14,
+      "mean_edge": 0.007714,
+      "positive_days": 0.571
     },
     "3": {
-      "days": 13,
-      "mean_edge": -0.013464,
-      "positive_days": 0.308
+      "days": 14,
+      "mean_edge": -0.013182,
+      "positive_days": 0.286
     }
   },
   "compare": {
-    "stars3_minus_stars1": -0.016914,
+    "stars3_minus_stars1": -0.007994,
     "tighten_layer1": null,
     "note": "⭐⭐⭐＝右側訊號排名前段（2026-09-28 起）；樣本足夠才與 ⭐ 比較，不足則不調整排序規則"
   },
