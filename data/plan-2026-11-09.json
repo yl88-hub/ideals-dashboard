@@ -1,0 +1,817 @@
+{
+  "date": "2026-11-09",
+  "star_basis": "rightside_rank",
+  "market": {
+    "light": "red",
+    "taiex": 41662.0,
+    "taiex_r5": -0.073,
+    "ma20": 45727.0,
+    "ma60": 46361.0,
+    "adv_ratio": 0.74,
+    "above_ma20": 0.086,
+    "conc3": 0.7140000000000001,
+    "advice": "紅燈環境，暫停新多單；持股照各自停損處理，燈號本身不是出場理由",
+    "ma200": 41072.15,
+    "index_advice": "加權站上 MA200（+1.4%）：大盤部位續抱"
+  },
+  "hot_sectors": [
+    {
+      "name": "生技醫療",
+      "stage": "主升",
+      "share": 0.013999999999999999,
+      "share_z": 2.67,
+      "share_d5": 0.01,
+      "rs5": null,
+      "score": 88.0,
+      "heat_days": 5
+    },
+    {
+      "name": "資訊服務",
+      "stage": "過熱",
+      "share": 0.006,
+      "share_z": 1.9,
+      "share_d5": 0.003,
+      "rs5": null,
+      "score": 83.0,
+      "heat_days": 7
+    },
+    {
+      "name": "紡織纖維",
+      "stage": "—",
+      "share": 0.004,
+      "share_z": 1.59,
+      "share_d5": 0.003,
+      "rs5": null,
+      "score": 76.0,
+      "heat_days": 3
+    },
+    {
+      "name": "其他",
+      "stage": "—",
+      "share": 0.004,
+      "share_z": 1.84,
+      "share_d5": 0.001,
+      "rs5": null,
+      "score": 74.0,
+      "heat_days": 10
+    },
+    {
+      "name": "金融保險",
+      "stage": "主升",
+      "share": 0.039,
+      "share_z": 1.98,
+      "share_d5": 0.006,
+      "rs5": null,
+      "score": 72.0,
+      "heat_days": 7
+    },
+    {
+      "name": "觀光餐旅",
+      "stage": "—",
+      "share": 0.0,
+      "share_z": 1.61,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 68.0,
+      "heat_days": 5
+    },
+    {
+      "name": "食品",
+      "stage": "—",
+      "share": 0.003,
+      "share_z": 1.56,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 67.0,
+      "heat_days": 3
+    },
+    {
+      "name": "電子通路",
+      "stage": "主升",
+      "share": 0.009000000000000001,
+      "share_z": 2.6,
+      "share_d5": 0.004,
+      "rs5": null,
+      "score": 66.0,
+      "heat_days": 4
+    },
+    {
+      "name": "居家生活",
+      "stage": "—",
+      "share": 0.0,
+      "share_z": -0.46,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 64.0,
+      "heat_days": 0
+    },
+    {
+      "name": "造紙",
+      "stage": "—",
+      "share": 0.0,
+      "share_z": 0.03,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 59.0,
+      "heat_days": 1
+    },
+    {
+      "name": "建材營造",
+      "stage": "—",
+      "share": 0.002,
+      "share_z": 0.21,
+      "share_d5": 0.001,
+      "rs5": null,
+      "score": 57.0,
+      "heat_days": 3
+    },
+    {
+      "name": "橡膠",
+      "stage": "—",
+      "share": 0.001,
+      "share_z": 1.37,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 56.0,
+      "heat_days": 2
+    },
+    {
+      "name": "半導體",
+      "stage": "主升",
+      "share": 0.41,
+      "share_z": 1.09,
+      "share_d5": 0.005,
+      "rs5": null,
+      "score": 56.0,
+      "heat_days": 10
+    },
+    {
+      "name": "鋼鐵",
+      "stage": "—",
+      "share": 0.004,
+      "share_z": 1.0,
+      "share_d5": 0.001,
+      "rs5": null,
+      "score": 53.0,
+      "heat_days": 3
+    },
+    {
+      "name": "其他電子",
+      "stage": "—",
+      "share": 0.040999999999999995,
+      "share_z": 0.32,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 50.0,
+      "heat_days": 1
+    },
+    {
+      "name": "汽車",
+      "stage": "—",
+      "share": 0.002,
+      "share_z": -0.15,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 49.0,
+      "heat_days": 0
+    },
+    {
+      "name": "水泥",
+      "stage": "—",
+      "share": 0.002,
+      "share_z": -0.63,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 48.0,
+      "heat_days": 0
+    },
+    {
+      "name": "航運",
+      "stage": "—",
+      "share": 0.011000000000000001,
+      "share_z": -0.17,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 48.0,
+      "heat_days": 0
+    },
+    {
+      "name": "運動休閒",
+      "stage": "—",
+      "share": 0.001,
+      "share_z": -0.41,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 47.0,
+      "heat_days": 0
+    },
+    {
+      "name": "綠能環保",
+      "stage": "—",
+      "share": 0.002,
+      "share_z": -0.06,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 46.0,
+      "heat_days": 0
+    },
+    {
+      "name": "玻璃陶瓷",
+      "stage": "—",
+      "share": 0.005,
+      "share_z": -0.93,
+      "share_d5": -0.002,
+      "rs5": null,
+      "score": 46.0,
+      "heat_days": 0
+    },
+    {
+      "name": "電機機械",
+      "stage": "—",
+      "share": 0.022000000000000002,
+      "share_z": -0.1,
+      "share_d5": -0.003,
+      "rs5": null,
+      "score": 45.0,
+      "heat_days": 0
+    },
+    {
+      "name": "貿易百貨",
+      "stage": "—",
+      "share": 0.001,
+      "share_z": -0.15,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 45.0,
+      "heat_days": 0
+    },
+    {
+      "name": "油電燃氣",
+      "stage": "—",
+      "share": 0.004,
+      "share_z": -0.52,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 41.0,
+      "heat_days": 0
+    },
+    {
+      "name": "電腦及週邊",
+      "stage": "退潮",
+      "share": 0.061,
+      "share_z": -0.51,
+      "share_d5": 0.004,
+      "rs5": null,
+      "score": 37.0,
+      "heat_days": 0
+    },
+    {
+      "name": "電器電纜",
+      "stage": "—",
+      "share": 0.001,
+      "share_z": -0.27,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 37.0,
+      "heat_days": 0
+    },
+    {
+      "name": "數位雲端",
+      "stage": "—",
+      "share": 0.0,
+      "share_z": -0.04,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 34.0,
+      "heat_days": 0
+    },
+    {
+      "name": "塑膠",
+      "stage": "—",
+      "share": 0.024,
+      "share_z": -1.39,
+      "share_d5": -0.016,
+      "rs5": null,
+      "score": 31.0,
+      "heat_days": 0
+    },
+    {
+      "name": "電子零組件",
+      "stage": "退潮",
+      "share": 0.243,
+      "share_z": -0.56,
+      "share_d5": -0.012,
+      "rs5": null,
+      "score": 30.0,
+      "heat_days": 0
+    },
+    {
+      "name": "化學",
+      "stage": "—",
+      "share": 0.004,
+      "share_z": -1.06,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 29.0,
+      "heat_days": 0
+    },
+    {
+      "name": "光電",
+      "stage": "退潮",
+      "share": 0.055,
+      "share_z": -1.13,
+      "share_d5": -0.004,
+      "rs5": null,
+      "score": 25.0,
+      "heat_days": 0
+    },
+    {
+      "name": "通信網路",
+      "stage": "退潮",
+      "share": 0.024,
+      "share_z": -1.02,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 24.0,
+      "heat_days": 0
+    }
+  ],
+  "theme_sectors": [
+    {
+      "name": "AI 伺服器 / 代工",
+      "stage": "—",
+      "share": 0.049,
+      "share_z": 0.28,
+      "share_d5": 0.001,
+      "rs5": null,
+      "score": 76.0,
+      "heat_days": 3
+    },
+    {
+      "name": "散熱模組",
+      "stage": "初升",
+      "share": 0.043,
+      "share_z": 1.62,
+      "share_d5": 0.017,
+      "rs5": null,
+      "score": 73.0,
+      "heat_days": 1
+    },
+    {
+      "name": "CoWoS 先進封裝",
+      "stage": "過熱",
+      "share": 0.139,
+      "share_z": 0.89,
+      "share_d5": 0.002,
+      "rs5": null,
+      "score": 66.0,
+      "heat_days": 7
+    },
+    {
+      "name": "PCB / 載板",
+      "stage": "初升",
+      "share": 0.142,
+      "share_z": 1.43,
+      "share_d5": 0.023,
+      "rs5": null,
+      "score": 63.0,
+      "heat_days": 1
+    },
+    {
+      "name": "重電綠能 / 電線電纜",
+      "stage": "—",
+      "share": 0.003,
+      "share_z": -0.5,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 56.0,
+      "heat_days": 0
+    },
+    {
+      "name": "特用化學品",
+      "stage": "—",
+      "share": 0.001,
+      "share_z": -0.8,
+      "share_d5": 0.0,
+      "rs5": null,
+      "score": 56.0,
+      "heat_days": 0
+    },
+    {
+      "name": "低軌衛星 / 無人機",
+      "stage": "退潮",
+      "share": 0.009000000000000001,
+      "share_z": -0.47,
+      "share_d5": 0.002,
+      "rs5": null,
+      "score": 53.0,
+      "heat_days": 0
+    },
+    {
+      "name": "機器人 / 智慧製造",
+      "stage": "—",
+      "share": 0.002,
+      "share_z": -0.86,
+      "share_d5": -0.001,
+      "rs5": null,
+      "score": 46.0,
+      "heat_days": 0
+    },
+    {
+      "name": "半導體設備 / 耗材",
+      "stage": "—",
+      "share": 0.001,
+      "share_z": -1.56,
+      "share_d5": -0.0,
+      "rs5": null,
+      "score": 44.0,
+      "heat_days": 0
+    },
+    {
+      "name": "其他",
+      "stage": "—",
+      "share": 0.604,
+      "share_z": -1.68,
+      "share_d5": -0.037000000000000005,
+      "rs5": null,
+      "score": 43.0,
+      "heat_days": 0
+    },
+    {
+      "name": "CPO / 矽光子",
+      "stage": "退潮",
+      "share": 0.008,
+      "share_z": -1.85,
+      "share_d5": -0.006,
+      "rs5": null,
+      "score": 24.0,
+      "heat_days": 0
+    }
+  ],
+  "candidates": [],
+  "watchlist": [],
+  "ai_briefing": null,
+  "momentum_top": [
+    {
+      "code": "6446",
+      "name": "藥華藥",
+      "close": 1370.0,
+      "ret_5d": 0.15130000000000002,
+      "vol_ratio": 2.31,
+      "score": 73.2,
+      "signals": "MACD↑,RSI強,均線多頭,20日新高"
+    },
+    {
+      "code": "2891",
+      "name": "中信金",
+      "close": 75.9,
+      "ret_5d": 0.012,
+      "vol_ratio": 1.25,
+      "score": 20.7,
+      "signals": "RSI強,均線多頭,20日新高"
+    }
+  ],
+  "news_stocks": [
+    {
+      "code": "6271",
+      "name": "同欣電",
+      "sector": "半導體",
+      "sentiment": "中性",
+      "events": [
+        "併購/募資"
+      ],
+      "sources": [
+        "中央社-財經",
+        "經濟日報-即時",
+        "自由財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 5
+    },
+    {
+      "code": "2308",
+      "name": "台達電",
+      "sector": "電源/散熱",
+      "sentiment": "偏多",
+      "events": [
+        "營收",
+        "訂單"
+      ],
+      "sources": [
+        "經濟日報-即時",
+        "自由財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "2357",
+      "name": "華碩",
+      "sector": "PC/NB",
+      "sentiment": "偏多",
+      "events": [
+        "營收",
+        "訂單"
+      ],
+      "sources": [
+        "經濟日報-即時",
+        "自由財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "2353",
+      "name": "宏碁",
+      "sector": "電腦及週邊",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超",
+        "營收"
+      ],
+      "sources": [
+        "TWSE-三大法人",
+        "自由財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 4
+    },
+    {
+      "code": "2027",
+      "name": "大成鋼",
+      "sector": "鋼鐵",
+      "sentiment": "偏多",
+      "events": [
+        "營收",
+        "目標價/評等",
+        "訂單",
+        "財報"
+      ],
+      "sources": [
+        "MoneyDJ-即時",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2330",
+      "name": "台積電",
+      "sector": "半導體",
+      "sentiment": "偏多",
+      "events": [
+        "法人買賣超"
+      ],
+      "sources": [
+        "TWSE-三大法人",
+        "經濟日報-即時",
+        "鉅亨網-美股國際"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2352",
+      "name": "佳世達",
+      "sector": "電腦及週邊",
+      "sentiment": "偏多",
+      "events": [
+        "法說會"
+      ],
+      "sources": [
+        "中央社-財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2382",
+      "name": "廣達",
+      "sector": "AI伺服器",
+      "sentiment": "中性",
+      "events": [
+        "法說會",
+        "營收"
+      ],
+      "sources": [
+        "經濟日報-即時",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2890",
+      "name": "永豐金",
+      "sector": "金融",
+      "sentiment": "偏多",
+      "events": [
+        "財報"
+      ],
+      "sources": [
+        "自由財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "3189",
+      "name": "景碩",
+      "sector": "PCB/載板",
+      "sentiment": "中性",
+      "events": [],
+      "sources": [
+        "自由財經",
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 3
+    },
+    {
+      "code": "2707",
+      "name": "晶華",
+      "sector": "觀光餐旅",
+      "sentiment": "偏多",
+      "events": [
+        "財報"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "3002",
+      "name": "歐格",
+      "sector": "電腦及週邊",
+      "sentiment": "偏多",
+      "events": [
+        "營收",
+        "目標價/評等",
+        "財報"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-美股國際"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "4906",
+      "name": "正文",
+      "sector": "通信網路",
+      "sentiment": "偏空",
+      "events": [
+        "營收",
+        "財報"
+      ],
+      "sources": [
+        "自由財經",
+        "鉅亨網-台股"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "4904",
+      "name": "遠傳",
+      "sector": "電信",
+      "sentiment": "偏空",
+      "events": [
+        "法人買賣超"
+      ],
+      "sources": [
+        "TWSE-三大法人",
+        "中央社-財經"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2324",
+      "name": "仁寶",
+      "sector": "PC/NB",
+      "sentiment": "中性",
+      "events": [
+        "營收"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "3450",
+      "name": "聯鈞",
+      "sector": "半導體",
+      "sentiment": "偏多",
+      "events": [
+        "營收",
+        "訂單",
+        "財報"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "3081",
+      "name": "聯亞",
+      "sector": "光通訊",
+      "sentiment": "中性",
+      "events": [],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2615",
+      "name": "萬海",
+      "sector": "航運",
+      "sentiment": "中性",
+      "events": [
+        "營收"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2609",
+      "name": "陽明",
+      "sector": "航運",
+      "sentiment": "中性",
+      "events": [
+        "營收"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    },
+    {
+      "code": "2603",
+      "name": "長榮",
+      "sector": "航運",
+      "sentiment": "中性",
+      "events": [
+        "營收"
+      ],
+      "sources": [
+        "鉅亨網-台股",
+        "鉅亨網-頭條"
+      ],
+      "sources_count": 2
+    }
+  ],
+  "swing_picks": [
+    {
+      "code": "6112",
+      "name": "邁達特",
+      "sector": "資訊服務",
+      "setup": "突破確認",
+      "score": 85.0,
+      "close": 52.4,
+      "stop": 42.95,
+      "signals": "突破確認、均線多頭、量價配合、近20日高、MA20>MA60"
+    },
+    {
+      "code": "2471",
+      "name": "資通",
+      "sector": "資訊服務",
+      "setup": "回測再起",
+      "score": 58.3,
+      "close": 52.1,
+      "stop": 49.15,
+      "signals": "回測再起、均線多頭、量價配合、MA20>MA60"
+    },
+    {
+      "code": "2880",
+      "name": "華南金",
+      "sector": "金融保險",
+      "setup": "突破確認",
+      "score": 56.7,
+      "close": 49.6,
+      "stop": 45.35,
+      "signals": "突破確認、均線多頭、量價配合、近20日高、MA20>MA60"
+    }
+  ],
+  "upstream_dates": {
+    "rotation": "2026-11-09",
+    "momentum": "2026-11-09",
+    "news": "2026-11-09",
+    "swing": "2026-11-09"
+  }
+}
